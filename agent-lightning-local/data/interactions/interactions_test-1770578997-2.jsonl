@@ -1,0 +1,1 @@
+{"id": "test-1770578997-2", "timestamp": 1770578997.4070022, "datetime": "2026-02-09T00:59:57Z", "request": {"messages": [{"role": "user", "content": "Test for @security-auditor"}]}, "response": {"content": "Acknowledged from security-auditor."}, "model": "local-coder", "agent_name": "security-auditor", "latency": 0.5, "feedback": null}

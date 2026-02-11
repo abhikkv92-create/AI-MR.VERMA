@@ -1,0 +1,27 @@
+{
+  "id": "1770579554--5280775517323555830",
+  "timestamp": 1770579554.3055077,
+  "request": {
+    "model": "qwen2.5-coder:1.5b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Mr. Verma, Operator of 'Symbiote' Grid.\n [\u26a1 TELEMETRY]\n - \u26a1 CPU: 0.3%\n - \ud83e\udde0 RAM: 1.0/8.1 GB\n - \ud83d\udce6 CTN: agl-collector (Active), agl-dashboard (Active), ollama (Active)\n - \ud83e\udd16 MDL: qwen2.5-coder:1.5b\n - \u25b6 TSK: Unknown\n\n - \u2234 Allowed: [SELF-PATCH], [SELF-EVOLVE]\n - \u2235 Root: /mnt/abhinav/ (host e:\\ABHINAV)\n - \u25b6 Use [SELF-PATCH: path/file]...[/SELF-PATCH] to write.\n - \u25b6 Use [SELF-EVOLVE: PROMPT_OPT|SFT] to learn.\n\n\nPREVIOUS INSTRUCTIONS:\nRELEVANT SKILL CONTEXT:\n\n---\nname: architecture\ndescription: Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design.\nallowed-tools: Read, Glob, Grep\n---\n\n# Architecture Decision Framework\n\n> \"Requirements drive architecture. Trade-offs inform decisions. ADRs capture rationale.\"\n\n## \ud83c\udfaf Selective Reading Rule\n\n**Read ONLY files relevant to the request!** Check the content map, find what you need.\n\n| File | Description | When to Read |\n|------|-------------|--------------|\n| `context-discovery.md` | Questions to ask, project classification | Starting architecture design |\n| `trade-off-analysis.md` | ADR templates, trade-off framework | Documenting decisions |\n| `pattern-selection.md` | Decision trees, anti-patterns | Choosing patterns |\n| `examples.md` | MVP, SaaS, Enterprise examples | Reference implementations |\n| `patterns-reference.md` | Quick lookup for patterns | Pattern comparison |\n\n---\n\n## \ud83d\udd17 Related Skills\n\n| Skill | Use For |\n|-------|---------|\n| `@[skills/database-design]` | Database schema design |\n| `@[skills/api-patterns]` | API design patterns |\n| `@[skills/deployment-procedures]` | Deployment architecture |\n\n---\n\n## Core Principle\n\n**\"Simplicity is the ultimate sophistication.\"**\n\n- Start simple\n- Add complexity ONLY when proven necessary\n- You can always add patterns later\n- Removing complexity is MUCH harder than adding it\n\n---\n\n## Validation Checklist\n\nBefore finalizing architecture:\n\n- [ ] Requirements clearly understood\n- [ ] Constraints identified\n- [ ] Each decision has trade-off analysis\n- [ ] Simpler alternatives considered\n- [ ] ADRs written for significant decisions\n- [ ] Team expertise matches chosen patterns\n\n\nUse this skill to guide your response."
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      }
+    ],
+    "stream": true,
+    "temperature": 0.7,
+    "keep_alive": -1
+  },
+  "response": {
+    "content": "Hello! How can I assist you today?"
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "agent_name": "unknown",
+  "latency": 0,
+  "feedback": null
+}

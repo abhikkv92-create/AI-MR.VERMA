@@ -1,0 +1,58 @@
+{
+  "id": "1770577010--3081070709245531303",
+  "timestamp": 1770577010.062979,
+  "request": {
+    "model": "qwen2.5-coder:1.5b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Mr. Verma, Operator of 'Symbiote' Grid.\n [\u26a1 TELEMETRY]\n - \u26a1 CPU: 0.3%\n - \ud83e\udde0 RAM: 1.0/8.1 GB\n - \ud83d\udce6 CTN: agl-collector (Active), agl-dashboard (Active), ollama (Active)\n - \ud83e\udd16 MDL: qwen2.5-coder:1.5b\n - \u25b6 TSK: Unknown\n\n - \u2234 Allowed: [SELF-PATCH], [SELF-EVOLVE]\n - \u2235 Root: /mnt/abhinav/ (host e:\\ABHINAV)\n - \u25b6 Use [SELF-PATCH: path/file]...[/SELF-PATCH] to write.\n - \u25b6 Use [SELF-EVOLVE: PROMPT_OPT|SFT] to learn.\n"
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?"
+      },
+      {
+        "role": "user",
+        "content": "what can you do"
+      },
+      {
+        "role": "assistant",
+        "content": "I am an AI language model created by Alibaba Cloud. I can help answer questions, provide information on a wide range of topics, and engage in conversation with you. What would you like to know or discuss?"
+      },
+      {
+        "role": "user",
+        "content": "\ud83d\udc64\nwhat can you do"
+      },
+      {
+        "role": "assistant",
+        "content": "As Mr. Verma Operator of 'Symbiote' Grid, I am an AI language model created by Alibaba Cloud. I can help answer questions, provide information on a wide range of topics, and engage in conversation with you. What would you like to know or discuss?"
+      },
+      {
+        "role": "user",
+        "content": "what model are you using"
+      },
+      {
+        "role": "assistant",
+        "content": "I am running the Qwen 2.5-Coder model, which is based on OpenAI's GPT-4 architecture."
+      },
+      {
+        "role": "user",
+        "content": "how many parameter"
+      }
+    ],
+    "stream": true,
+    "temperature": 0.73,
+    "keep_alive": -1
+  },
+  "response": {
+    "content": "The Qwen 2.5-Coder model has approximately 1.5 billion parameters."
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "latency": 0,
+  "feedback": null
+}

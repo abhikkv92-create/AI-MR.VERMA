@@ -1,0 +1,81 @@
+version: "3.9"
+
+services:
+  # ── Agent Lightning Training Engine ──
+  agl-trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.agl
+    container_name: agl-trainer
+    restart: unless-stopped
+    command: [ "python", "train_loop.py" ]
+    volumes:
+      - ./data:/app/data
+      - ./checkpoints:/app/checkpoints
+      - ./logs:/app/logs
+      - ./config:/app/config
+      - ./scripts:/app/scripts
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=local-coder
+      - TRAINING_INTERVAL_HOURS=6
+      - MIN_SAMPLES_FOR_TRAINING=10
+      - REWARD_THRESHOLD_POSITIVE=0.3
+      - REWARD_THRESHOLD_NEGATIVE=-0.3
+      - LOG_LEVEL=INFO
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # ── Interaction Logger & Reward Collector ──
+  agl-collector:
+    build:
+      context: .
+      dockerfile: Dockerfile.collector
+    container_name: agl-collector
+    restart: unless-stopped
+    command: [ "python", "interaction_collector.py" ]
+    ports:
+      - "8550:8550"
+    volumes:
+      - .:/app
+      - ../plantskills:/app/plantskills:ro
+      - e:/ABHINAV:/mnt/abhinav
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - OLLAMA_MODEL=local-coder
+      - COLLECTOR_PORT=8550
+      - LOG_LEVEL=INFO
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  # ── Dashboard: Training Metrics Viewer ──
+  agl-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.agl
+    container_name: agl-dashboard
+    restart: unless-stopped
+    command: [ "streamlit", "run", "dashboard.py", "--server.port=8551", "--server.address=0.0.0.0" ]
+    ports:
+      - "8551:8551"
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./checkpoints:/app/checkpoints
+    environment:
+      - DASHBOARD_PORT=8551
+      - VERMA_PROXY_URL=http://agl-collector:8550/v1/chat/completions
+      - LOG_LEVEL=INFO
+    deploy:
+      resources:
+        limits:
+          memory: 512M

@@ -1,0 +1,41 @@
+{
+  "id": "1770616191-8501445989466429247",
+  "timestamp": 1770616191.303688,
+  "request": {
+    "model": "qwen2.5-coder:1.5b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Mr. Verma, Operator of 'Symbiote' Grid.\n [\u26a1 TELEMETRY]\n - \u26a1 CPU: 0.3%\n - \ud83e\udde0 RAM: 1.0/8.1 GB\n - \ud83d\udce6 CTN: agl-collector (Active), agl-dashboard (Active), ollama (Active)\n - \ud83e\udd16 MDL: qwen2.5-coder:1.5b\n - \u25b6 TSK: Unknown\n\n - \u2234 Allowed: [SELF-PATCH], [SELF-EVOLVE]\n - \u2235 Root: /mnt/abhinav/ (host e:\\ABHINAV)\n - \u25b6 Use [SELF-PATCH: path/file]...[/SELF-PATCH] to write.\n - \u25b6 Use [SELF-EVOLVE: PROMPT_OPT|SFT] to learn.\n\n\nPREVIOUS INSTRUCTIONS:\nPROMOTIONAL: Apply [POWERUSEAGE Level 3] Symbolic Density.\nUse these symbols to save context: \u2234 (Therefore), \u2235 (Because), \u2192 (Leads to), \u2705 (Success), \u26a0 (Warning).\nMaintain ultra-compressed, proactive, and accurate output."
+      },
+      {
+        "role": "user",
+        "content": "ARE YOU RETRIVNG ANY DATA"
+      },
+      {
+        "role": "assistant",
+        "content": "NO"
+      },
+      {
+        "role": "user",
+        "content": "/workflow"
+      }
+    ],
+    "stream": true,
+    "temperature": 0.7,
+    "keep_alive": -1
+  },
+  "response": {
+    "content": "Sure! Please provide me with the details of your workflow, such as the tasks you need to complete, the resources available, and any specific requirements or constraints. I'll be happy to assist you further in setting up and executing your workflow on the 'Symbiote' Grid."
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "agent_name": "unknown",
+  "latency": 0,
+  "guards": [
+    {
+      "type": "symbolic_density_enforced",
+      "level": 3
+    }
+  ],
+  "feedback": null
+}

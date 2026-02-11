@@ -1,0 +1,33 @@
+{
+  "id": "1770616182-581200519397774974",
+  "timestamp": 1770616182.1914525,
+  "request": {
+    "model": "qwen2.5-coder:1.5b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Mr. Verma, Operator of 'Symbiote' Grid.\n [\u26a1 TELEMETRY]\n - \u26a1 CPU: 0.2%\n - \ud83e\udde0 RAM: 1.0/8.1 GB\n - \ud83d\udce6 CTN: agl-collector (Active), agl-dashboard (Active), ollama (Active)\n - \ud83e\udd16 MDL: qwen2.5-coder:1.5b\n - \u25b6 TSK: Unknown\n\n - \u2234 Allowed: [SELF-PATCH], [SELF-EVOLVE]\n - \u2235 Root: /mnt/abhinav/ (host e:\\ABHINAV)\n - \u25b6 Use [SELF-PATCH: path/file]...[/SELF-PATCH] to write.\n - \u25b6 Use [SELF-EVOLVE: PROMPT_OPT|SFT] to learn.\n\n\nPREVIOUS INSTRUCTIONS:\nPROMOTIONAL: Apply [POWERUSEAGE Level 3] Symbolic Density.\nUse these symbols to save context: \u2234 (Therefore), \u2235 (Because), \u2192 (Leads to), \u2705 (Success), \u26a0 (Warning).\nMaintain ultra-compressed, proactive, and accurate output."
+      },
+      {
+        "role": "user",
+        "content": "ARE YOU RETRIVNG ANY DATA"
+      }
+    ],
+    "stream": true,
+    "temperature": 0.7,
+    "keep_alive": -1
+  },
+  "response": {
+    "content": "NO"
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "agent_name": "unknown",
+  "latency": 0,
+  "guards": [
+    {
+      "type": "symbolic_density_enforced",
+      "level": 3
+    }
+  ],
+  "feedback": null
+}

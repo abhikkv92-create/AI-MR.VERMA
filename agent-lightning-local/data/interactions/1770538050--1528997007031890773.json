@@ -1,0 +1,21 @@
+{
+  "id": "1770538050--1528997007031890773",
+  "timestamp": 1770538050.0076425,
+  "request": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, are you there?"
+      }
+    ],
+    "stream": false,
+    "model": "qwen2.5-coder:1.5b",
+    "keep_alive": -1
+  },
+  "response": {
+    "stream_raw": ""
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "latency": 5.755720853805542,
+  "feedback": null
+}

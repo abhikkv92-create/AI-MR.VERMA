@@ -1,0 +1,57 @@
+# MR.VERMA Platform Configuration
+# Supports: OPENCODE, TRAE.AI, and Local Execution
+
+platform:
+  name: "MR.VERMA"
+  version: "2.0.0"
+  environment: "production"
+  
+# Agent Configuration
+agents:
+  enabled: true
+  auto_load: true
+  max_concurrent: 10
+  timeout: 300
+  
+# Skills Configuration
+skills:
+  enabled: true
+  auto_load: true
+  directory: "./plantskills/workflows"
+  
+# Workflows Configuration
+workflows:
+  enabled: true
+  auto_start: true
+  parallel_execution: true
+  
+# Platform Detection
+execution_mode:
+  # Automatically detected: opencode, traeai, local
+  mode: "auto"
+  
+# Spider Web Orchestration
+orchestrator:
+  name: "SpiderWeb"
+  sync_mode: "harmony"
+  auto_route: true
+  
+# Integrations
+integrations:
+  opencode:
+    enabled: true
+    api_endpoint: "/api/v1/opencode"
+    auth_required: false
+  traeai:
+    enabled: true
+    api_endpoint: "/api/v1/traeai"
+    auth_required: false
+  local:
+    enabled: true
+    api_endpoint: "http://localhost:8550"
+    
+# Logging
+logging:
+  level: "INFO"
+  format: "json"
+  output: "console"

@@ -1,0 +1,25 @@
+{
+  "id": "1770540939--7943437229709906990",
+  "timestamp": 1770540939.3603737,
+  "request": {
+    "model": "qwen2.5-coder:1.5b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "ACTION: User invoked the workflow '/optimize-stack'.\n\nEXECUTE THESE STEPS:\n---\ndescription: Full stack performance optimization for database, backend, and frontend with Core Web Vitals targets.\n---\n\n# /optimize-stack - Full Stack Optimization\n\n$ARGUMENTS: [codebase_path]\n\n## \ud83e\udd16 Applied Agents: `database-architect`, `backend-specialist`, `frontend-specialist`\n\nThis workflow tunes every layer of the stack for maximum performance and cost efficiency.\n\n## \ud83d\udee0\ufe0f Step-by-Step Execution\n\n1.  **Database Layer**\n    - Agent: `database-architect`\n    - Action: Apply `database-optimizer` skill.\n    - Check: Index usage, query performance (EXPLAIN ANALYZE), schema normalization.\n\n2.  **Backend Efficiency**\n    - Agent: `backend-specialist`\n    - Action: Review `python-performance-optimization` and `token-efficiency`.\n    - Focus: API latency, extensive loop reduction, caching strategy.\n\n3.  **Frontend Core Web Vitals**\n    - Agent: `frontend-specialist`\n    - Action: Apply `nextjs-best-practices` and `performance-profiling`.\n    - Targets: LCP < 2.5s, CLS < 0.1, INP < 200ms.\n\n4.  **Cost Analysis**\n    - Agent: `product-manager`\n    - Action: Use `cost-optimization` skill to project savings.\n\n---\n\n## \ud83d\udea6 Output Format\n\nProduces a **Performance Optimization Report** with before/after metrics.\n"
+      },
+      {
+        "role": "user",
+        "content": "Please run /optimize-stack"
+      }
+    ],
+    "stream": false,
+    "keep_alive": -1
+  },
+  "response": {
+    "stream_raw": ""
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "latency": 8.117935180664062,
+  "feedback": null
+}

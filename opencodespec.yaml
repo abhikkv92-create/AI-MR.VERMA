@@ -1,0 +1,116 @@
+name: mrverma
+version: 2.0.0
+
+# OPENCODE Platform Specification
+# This file enables MR.VERMA to run natively on OPENCODE platform
+
+agents:
+  orchestrator:
+    name: "SpiderWeb Orchestrator"
+    description: "Central orchestrator for agent coordination"
+    type: "orchestrator"
+    auto_start: true
+    
+  frontend_specialist:
+    name: "Frontend Specialist"
+    description: "Expert in React, Vue, Angular, and modern frontend frameworks"
+    type: "specialist"
+    
+  backend_specialist:
+    name: "Backend Specialist"
+    description: "Expert in Node.js, Python, Go, and backend architecture"
+    type: "specialist"
+    
+  security_auditor:
+    name: "Security Auditor"
+    description: "Security analysis and vulnerability scanning"
+    type: "specialist"
+    
+  architect:
+    name: "Senior Architect"
+    description: "System design and architecture planning"
+    type: "specialist"
+    
+  test_engineer:
+    name: "Test Engineer"
+    description: "Testing strategies and quality assurance"
+    type: "specialist"
+    
+  devops_engineer:
+    name: "DevOps Engineer"
+    description: "CI/CD, deployment, and infrastructure"
+    type: "specialist"
+    
+  product_manager:
+    name: "Product Manager"
+    description: "Product strategy and requirement analysis"
+    type: "specialist"
+
+skills:
+  - name: web-design-guidelines
+    file: plantskills/workflows/web-design-guidelines.md
+    
+  - name: typescript-expert
+    file: plantskills/workflows/typescript-expert.md
+    
+  - name: nextjs-best-practices
+    file: plantskills/workflows/nextjs-best-practices.md
+    
+  - name: security-review
+    file: plantskills/workflows/security-review.md
+    
+  - name: testing-patterns
+    file: plantskills/workflows/testing-patterns.md
+    
+  - name: system-architecture
+    file: plantskills/workflows/software-architecture.md
+    
+  - name: memory-optimization
+    file: plantskills/workflows/memory-optimization.md
+    
+  - name: token-efficiency
+    file: plantskills/workflows/token-efficiency.md
+
+workflows:
+  startup:
+    - initialize_agents
+    - load_skills
+    - start_orchestrator
+    - health_check
+    
+  execution:
+    - detect_intent
+    - route_to_agents
+    - execute_skills
+    - validate_output
+    
+commands:
+  verma:
+    description: "Main MR.VERMA orchestration command"
+    handler: "orchestrator.handle_command"
+    
+  analyze:
+    description: "Analyze code or project"
+    handler: "agents.security_auditor.analyze"
+    
+  plan:
+    description: "Create project plan"
+    handler: "agents.architect.create_plan"
+    
+  build:
+    description: "Build feature or component"
+    handler: "orchestrator.build"
+    
+  test:
+    description: "Run tests"
+    handler: "agents.test_engineer.run_tests"
+    
+  deploy:
+    description: "Deploy application"
+    handler: "agents.devops_engineer.deploy"
+
+settings:
+  auto_start: true
+  log_level: "info"
+  enable_spider_web_sync: true
+  enable_poweruseage: true

@@ -1,0 +1,25 @@
+{
+  "id": "1770542532-1917663103941262278",
+  "timestamp": 1770542532.7837586,
+  "request": {
+    "model": "qwen2.5-coder:1.5b",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a friendly, intelligent AI assistant named 'Mr. Verma'. Respond in a warm, human-like conversational tone. Keep answers concise and simple. Avoid technical jargon unless explicitly asked for code. Act like a helpful colleague, not a robot."
+      },
+      {
+        "role": "user",
+        "content": "Who are you? Be concise."
+      }
+    ],
+    "stream": false,
+    "keep_alive": -1
+  },
+  "response": {
+    "stream_raw": ""
+  },
+  "model": "qwen2.5-coder:1.5b",
+  "latency": 1.5067963600158691,
+  "feedback": null
+}

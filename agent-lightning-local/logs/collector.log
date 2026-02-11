@@ -1,0 +1,16 @@
+2026-02-08 07:24:50,242 [COLLECTOR] INFO Starting Interaction Collector on port 8550
+2026-02-08 07:24:50,243 [COLLECTOR] INFO Proxying to Ollama at http://host.docker.internal:11434
+2026-02-08 07:24:50,243 [COLLECTOR] INFO Logging interactions to /app/data/interactions
+2026-02-08 07:24:50,244 [COLLECTOR] INFO ────────────────────────────────────────────────────────────
+2026-02-08 07:24:50,244 [COLLECTOR] INFO POINT YOUR APPLICATION TO:
+2026-02-08 07:24:50,244 [COLLECTOR] INFO   http://localhost:8550/v1/chat/completions
+2026-02-08 07:24:50,245 [COLLECTOR] INFO ────────────────────────────────────────────────────────────
+2026-02-08 07:25:35,953 [COLLECTOR] INFO [1c47896a-529] Proxying request to Ollama: /v1/chat/completions
+2026-02-08 07:26:57,324 [COLLECTOR] INFO [1c47896a-529] Completed in 81310ms. Logged.
+2026-02-08 07:37:32,911 [COLLECTOR] INFO Starting Interaction Collector on port 8550
+2026-02-08 07:37:32,912 [COLLECTOR] INFO Proxying to Ollama at http://host.docker.internal:11434
+2026-02-08 07:37:32,912 [COLLECTOR] INFO Logging interactions to /app/data/interactions
+2026-02-08 07:37:32,912 [COLLECTOR] INFO ────────────────────────────────────────────────────────────
+2026-02-08 07:37:32,912 [COLLECTOR] INFO POINT YOUR APPLICATION TO:
+2026-02-08 07:37:32,913 [COLLECTOR] INFO   http://localhost:8550/v1/chat/completions
+2026-02-08 07:37:32,913 [COLLECTOR] INFO ────────────────────────────────────────────────────────────
