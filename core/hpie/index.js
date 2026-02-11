@@ -13,6 +13,7 @@ const { AgentSwarm, TaskDecomposer, ConsensusEngine, SkillAcquisitionManager, AG
 const { IntelligentLaunchOrchestrator, HealthChecker, EnvironmentConfigurator } = require('./launch-orchestrator');
 const { PlatformBridge, PLATFORM_CAPS } = require('./platform-bridge');
 const { AntiBloatProtocol, DependencyAnalyzer, ModuleUsageTracker, MemoryFootprintProfiler } = require('./anti-bloat');
+const { CodeQualityEngine, LintRunner, QualityGate, QualityReport, LintCheckResult } = require('./code-quality-engine');
 
 module.exports = {
   // Core Engine
@@ -57,5 +58,12 @@ module.exports = {
   AntiBloatProtocol,
   DependencyAnalyzer,
   ModuleUsageTracker,
-  MemoryFootprintProfiler
+  MemoryFootprintProfiler,
+
+  // Code Quality
+  CodeQualityEngine,
+  LintRunner,
+  QualityGate,
+  QualityReport,
+  LintCheckResult
 };

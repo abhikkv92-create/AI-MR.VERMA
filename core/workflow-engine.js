@@ -28,61 +28,69 @@ class WorkflowEngine {
           { id: 'load_agents', type: 'action', action: 'load_agents' },
           { id: 'load_skills', type: 'action', action: 'load_skills' },
           { id: 'activate_spiderweb', type: 'action', action: 'sync_spiderweb' },
-          { id: 'health_check', type: 'validation', action: 'health_check' }
+          { id: 'health_check', type: 'validation', action: 'health_check' },
+          { id: 'lint_health', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_core' }
         ],
         auto_execute: true,
         parallel: false
       },
-      
+
       code_review: {
         name: 'Code Review Workflow',
-        description: 'Comprehensive code review process',
+        description: 'Comprehensive code review with lint-first enforcement',
         steps: [
+          { id: 'lint', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' },
           { id: 'analyze', type: 'agent_task', agent: 'security_auditor', action: 'analyze_code' },
           { id: 'architecture', type: 'agent_task', agent: 'architect', action: 'review_design' },
           { id: 'testing', type: 'agent_task', agent: 'test_engineer', action: 'check_coverage' },
           { id: 'performance', type: 'agent_task', agent: 'performance_optimizer', action: 'profile_code' },
+          { id: 'quality_gate', type: 'agent_task', agent: 'code_quality_enforcer', action: 'enforce_quality_gate' },
           { id: 'validation', type: 'validation', action: 'validate_review' }
         ],
         auto_execute: false,
         parallel: true
       },
-      
+
       feature_development: {
         name: 'Feature Development',
-        description: 'End-to-end feature development workflow',
+        description: 'End-to-end feature development with lint enforcement at every stage',
         steps: [
           { id: 'plan', type: 'agent_task', agent: 'product_manager', action: 'define_requirements' },
           { id: 'design', type: 'agent_task', agent: 'architect', action: 'create_design' },
           { id: 'implement', type: 'agent_task', agent: 'orchestrator', action: 'route_implementation' },
+          { id: 'lint_post_impl', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' },
           { id: 'test', type: 'agent_task', agent: 'test_engineer', action: 'create_tests' },
           { id: 'review', type: 'workflow', workflow: 'code_review' },
+          { id: 'pre_deploy_gate', type: 'agent_task', agent: 'code_quality_enforcer', action: 'enforce_quality_gate' },
           { id: 'deploy', type: 'agent_task', agent: 'devops_engineer', action: 'deploy' }
         ],
         auto_execute: false,
         parallel: false
       },
-      
+
       security_audit: {
         name: 'Security Audit',
-        description: 'Comprehensive security analysis',
+        description: 'Comprehensive security analysis with quality validation',
         steps: [
+          { id: 'lint', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' },
           { id: 'scan', type: 'agent_task', agent: 'security_auditor', action: 'scan_vulnerabilities' },
           { id: 'analyze', type: 'agent_task', agent: 'security_auditor', action: 'analyze_threats' },
           { id: 'report', type: 'agent_task', agent: 'security_auditor', action: 'generate_report' },
-          { id: 'remediate', type: 'agent_task', agent: 'orchestrator', action: 'create_fixes' }
+          { id: 'remediate', type: 'agent_task', agent: 'orchestrator', action: 'create_fixes' },
+          { id: 'post_fix_lint', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' }
         ],
         auto_execute: false,
         parallel: false
       },
-      
+
       optimization: {
         name: 'Performance Optimization',
-        description: 'Optimize code and reduce tokens',
+        description: 'Optimize code and reduce tokens with quality enforcement',
         steps: [
           { id: 'profile', type: 'agent_task', agent: 'performance_optimizer', action: 'profile_system' },
           { id: 'identify', type: 'agent_task', agent: 'performance_optimizer', action: 'find_bottlenecks' },
           { id: 'optimize', type: 'agent_task', agent: 'performance_optimizer', action: 'apply_optimizations' },
+          { id: 'post_opt_lint', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' },
           { id: 'validate', type: 'validation', action: 'verify_improvements' }
         ],
         auto_execute: false,

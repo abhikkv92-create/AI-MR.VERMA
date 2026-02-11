@@ -107,6 +107,28 @@ hpie:
     scan_on_startup: false
     max_modules: 500
 
+  code_quality:
+    enabled: true
+    enforcement: "strict"
+    auto_fix: true
+    threshold: 100
+    max_errors: 0
+    max_warnings: 50
+    min_score: 80
+    enforced_workflows:
+      - startup
+      - code_review
+      - feature_development
+      - security_audit
+      - optimization
+      - vibecoding
+      - build_app
+    linters:
+      eslint: true
+      ruff: true
+      mypy: false
+      tsc: false
+
 # Logging
 logging:
   level: "INFO"

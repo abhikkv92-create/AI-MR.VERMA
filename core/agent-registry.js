@@ -136,6 +136,16 @@ class AgentRegistry {
         connections: ['frontend_specialist', 'backend_specialist'],
         priority: 70,
         auto_start: false
+      },
+      {
+        id: 'code_quality_enforcer',
+        name: 'Code Quality Enforcer',
+        role: 'quality_gate',
+        description: 'Zero-defect lint enforcement and code quality gating at every pipeline stage',
+        capabilities: ['lint', 'validate', 'type_check', 'code_quality', 'auto_fix', 'style_enforce'],
+        connections: ['all'],
+        priority: 95,
+        auto_start: true
       }
     ];
 
@@ -273,7 +283,11 @@ class AgentRegistry {
       'optimize': 'performance_optimizer',
       'mobile': 'mobile_developer',
       'ios': 'mobile_developer',
-      'android': 'mobile_developer'
+      'android': 'mobile_developer',
+      'lint': 'code_quality_enforcer',
+      'code_quality': 'code_quality_enforcer',
+      'validate': 'code_quality_enforcer',
+      'style': 'code_quality_enforcer'
     };
 
     const targetAgentId = capabilityMap[task.type] || 'orchestrator';

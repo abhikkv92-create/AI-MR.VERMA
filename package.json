@@ -22,7 +22,9 @@
     "sync": "node -e \"const v=require('./core/enhanced-orchestrator');const o=new v();o.initialize().then(()=>o.registry.syncSpiderWeb())\"",
     "hpie:status": "node -e \"const v=require('./core/enhanced-orchestrator');const o=new v();o.initialize().then(()=>o.showHPIEStatus())\"",
     "test": "echo \"Tests coming soon...\"",
-    "lint": "echo \"Linting not configured yet\"",
+    "lint": "npx eslint core/ --ext .js",
+    "lint:fix": "npx eslint core/ --ext .js --fix",
+    "lint:all": "node -e \"const {CodeQualityEngine}=require('./core/hpie');const e=new CodeQualityEngine();e.fullAudit(process.cwd()).then(r=>console.log(JSON.stringify(r,null,2)))\"",
     "install:ollama": "echo \"Please install Ollama from https://ollama.com/download\"",
     "pull:codellama": "ollama pull codellama:7b-code || echo \"Make sure Ollama is installed\""
   },
@@ -50,6 +52,7 @@
     "js-yaml": "^4.1.1"
   },
   "devDependencies": {
+    "eslint": "^8.56.0",
     "nodemon": "^3.0.0"
   },
   "engines": {

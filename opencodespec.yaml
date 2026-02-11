@@ -46,6 +46,12 @@ agents:
     description: "Product strategy and requirement analysis"
     type: "specialist"
 
+  code_quality_enforcer:
+    name: "Code Quality Enforcer"
+    description: "Lint enforcement, quality gates, and zero-defect validation"
+    type: "quality_gate"
+    auto_start: true
+
 skills:
   - name: web-design-guidelines
     file: plantskills/workflows/web-design-guidelines.md
@@ -79,6 +85,9 @@ skills:
 
   - name: security-hardening
     file: core/hpie/security-hardening.js
+
+  - name: code-quality-engine
+    file: core/hpie/code-quality-engine.js
 
   - name: multi-agent-orchestrator
     file: core/hpie/multi-agent-orchestrator.js
@@ -121,6 +130,10 @@ commands:
     description: "Deploy application"
     handler: "agents.devops_engineer.deploy"
 
+  lint:
+    description: "Run code quality audit"
+    handler: "hpie.quality.fullAudit"
+
 settings:
   auto_start: true
   log_level: "info"
@@ -129,3 +142,5 @@ settings:
   enable_hpie: true
   enable_zero_hallucination: true
   enable_security_hardening: true
+  enable_code_quality: true
+  lint_enforcement: strict

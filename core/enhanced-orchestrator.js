@@ -24,7 +24,8 @@ const {
   SecurityHardeningModule,
   AgentSwarm,
   PlatformBridge,
-  AntiBloatProtocol
+  AntiBloatProtocol,
+  CodeQualityEngine
 } = require('./hpie');
 
 class EnhancedVermaOrchestrator {
@@ -147,31 +148,34 @@ class EnhancedVermaOrchestrator {
   }
 
   async loadEnhancedWorkflows() {
-    // Add vibecoding workflow
+    // Add vibecoding workflow (with lint enforcement)
     this.workflowEngine.registerWorkflow('vibecoding', {
       name: 'Vibecoding Workflow',
-      description: 'Natural language to application development',
+      description: 'Natural language to application development with lint enforcement',
       steps: [
         { id: 'analyze', type: 'action', action: 'analyze_requirements' },
         { id: 'design', type: 'action', action: 'design_architecture' },
         { id: 'generate', type: 'action', action: 'generate_code' },
         { id: 'assemble', type: 'action', action: 'assemble_project' },
+        { id: 'lint_output', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' },
         { id: 'validate', type: 'validation', action: 'validate_project' }
       ],
       auto_execute: false,
       parallel: false
     });
 
-    // Add build workflow
+    // Add build workflow (with lint enforcement)
     this.workflowEngine.registerWorkflow('build_app', {
       name: 'Application Build',
-      description: 'Complete application build process',
+      description: 'Complete application build process with lint enforcement',
       steps: [
         { id: 'plan', type: 'agent_task', agent: 'architect', action: 'create_plan' },
         { id: 'vibe', type: 'action', action: 'vibecoding' },
         { id: 'code', type: 'agent_task', agent: 'vibecoder', action: 'generate' },
+        { id: 'post_gen_lint', type: 'agent_task', agent: 'code_quality_enforcer', action: 'lint_validate' },
         { id: 'review', type: 'agent_task', agent: 'security_auditor', action: 'review' },
-        { id: 'test', type: 'agent_task', agent: 'test_engineer', action: 'test' }
+        { id: 'test', type: 'agent_task', agent: 'test_engineer', action: 'test' },
+        { id: 'final_quality_gate', type: 'agent_task', agent: 'code_quality_enforcer', action: 'enforce_quality_gate' }
       ],
       auto_execute: false,
       parallel: false
@@ -220,6 +224,8 @@ class EnhancedVermaOrchestrator {
         return this.showLLMStatus();
       case 'hpie':
         return this.showHPIEStatus();
+      case 'lint':
+        return this.runLint(args);
       case 'help':
         return this.showHelp();
       default:
@@ -460,6 +466,7 @@ INFORMATION:
   /verma workflows            List workflows
   /verma llm                  Show LLM status
   /verma hpie                 Show HPIE engine status
+  /verma lint [path]          Run code quality audit
   /verma sync                 Sync SpiderWeb
   /verma help                 Show this help
 
@@ -521,7 +528,22 @@ QUICK START:
         return security.gate(payload.agentId, payload.permission, payload.input);
       });
 
-      this.hpie = { engine, security, verification, swarm, platform, antiBloat };
+      // 7. Code Quality Engine (lint enforcement)
+      const quality = new CodeQualityEngine({
+        enforcement: process.env.LINT_ENFORCEMENT || 'strict',
+        autoFix: process.env.LINT_AUTO_FIX === 'true',
+        threshold: parseInt(process.env.LINT_THRESHOLD || '100', 10)
+      });
+
+      // Register quality_check subsystem in intelligence engine
+      engine.registerSubsystem('quality_check', async (payload) => {
+        return quality.lint(payload.targetPath || process.cwd());
+      });
+
+      // Register code_quality_enforcer in IAM
+      security.registerAgent('code_quality_enforcer', 'orchestrator');
+
+      this.hpie = { engine, security, verification, swarm, platform, antiBloat, quality };
 
       console.log('  ✓ Intelligence Engine initialized');
       console.log('  ✓ Security Hardening active (AES-256-GCM)');
@@ -529,6 +551,7 @@ QUICK START:
       console.log('  ✓ Multi-Agent Swarm ready (Critic/Optimizer/Executor)');
       console.log(`  ✓ Platform Bridge: ${platformResult.platform}`);
       console.log('  ✓ Anti-Bloat Protocol active');
+      console.log('  ✓ Code Quality Engine active (lint enforcement)');
 
     } catch (error) {
       console.error('  ⚠️  HPIE initialization error (non-fatal):', error.message);
@@ -580,14 +603,54 @@ QUICK START:
     console.log(`    Score: ${bloatAnalysis.score.value}/100 (${bloatAnalysis.score.grade} - ${bloatAnalysis.score.label})`);
     console.log(`    Memory: ${bloatAnalysis.memoryFootprint.heapUsedMB}MB / ${bloatAnalysis.memoryFootprint.heapTotalMB}MB`);
 
+    const qualityStatus = this.hpie.quality ? this.hpie.quality.getStatus() : null;
+    if (qualityStatus) {
+      console.log('\n  CODE QUALITY:');
+      console.log(`    Enforcement: ${qualityStatus.enforcement}`);
+      console.log(`    Auto-fix: ${qualityStatus.autoFix}`);
+      console.log(`    Audits run: ${qualityStatus.auditsRun}`);
+      console.log(`    Gate threshold: ${qualityStatus.gateThreshold}`);
+    }
+
     return {
       engine: engineReport,
       security: securityStatus,
       verification: verificationStats,
       swarm: swarmStats,
       platform: platformStatus,
-      bloat: bloatAnalysis.score
+      bloat: bloatAnalysis.score,
+      quality: qualityStatus
     };
+  }
+
+  async runLint(args = {}) {
+    if (!this.hpie?.quality) {
+      console.log('\n⚠️  Code Quality Engine not initialized');
+      return { status: 'offline' };
+    }
+
+    const targetPath = args.path || args.text || process.cwd();
+    console.log(`\n🔍 Running lint on: ${targetPath}`);
+
+    try {
+      const result = await this.hpie.quality.fullAudit(targetPath);
+      console.log(`\n📊 Quality Report: ${result.report.grade} (${result.report.score}/100)`);
+      console.log(`   Errors: ${result.report.totalErrors} | Warnings: ${result.report.totalWarnings}`);
+      console.log(`   Gate: ${result.gate.passed ? '✅ PASSED' : '❌ BLOCKED'}`);
+
+      if (result.report.checks.length > 0) {
+        console.log('\n   Checks:');
+        for (const check of result.report.checks) {
+          const icon = check.passed ? '✓' : '✗';
+          console.log(`     ${icon} ${check.tool}: ${check.errors} errors, ${check.warnings} warnings`);
+        }
+      }
+
+      return result;
+    } catch (error) {
+      console.error(`\n❌ Lint failed: ${error.message}`);
+      return { error: error.message };
+    }
   }
 
   // Legacy compatibility
