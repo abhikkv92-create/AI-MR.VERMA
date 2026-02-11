@@ -71,6 +71,18 @@ skills:
   - name: token-efficiency
     file: plantskills/workflows/token-efficiency.md
 
+  - name: hpie-intelligence-engine
+    file: core/hpie/intelligence-engine.js
+
+  - name: zero-hallucination
+    file: core/hpie/zero-hallucination.js
+
+  - name: security-hardening
+    file: core/hpie/security-hardening.js
+
+  - name: multi-agent-orchestrator
+    file: core/hpie/multi-agent-orchestrator.js
+
 workflows:
   startup:
     - initialize_agents
@@ -114,3 +126,6 @@ settings:
   log_level: "info"
   enable_spider_web_sync: true
   enable_poweruseage: true
+  enable_hpie: true
+  enable_zero_hallucination: true
+  enable_security_hardening: true

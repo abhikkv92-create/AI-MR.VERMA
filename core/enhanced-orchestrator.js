@@ -17,6 +17,16 @@ const VibecodingAgent = require('./vibecoding-agent');
 const ApplicationBuilder = require('./application-builder');
 const CodeExecutionSandbox = require('./sandbox');
 
+// HPIE - High-Performance Intelligence Engine
+const {
+  HighPerformanceIntelligenceEngine,
+  ZeroHallucinationFramework,
+  SecurityHardeningModule,
+  AgentSwarm,
+  PlatformBridge,
+  AntiBloatProtocol
+} = require('./hpie');
+
 class EnhancedVermaOrchestrator {
   constructor() {
     this.config = null;
@@ -32,6 +42,9 @@ class EnhancedVermaOrchestrator {
     this.vibecoder = null;
     this.builder = null;
     this.sandbox = null;
+
+    // HPIE subsystems
+    this.hpie = null;
   }
 
   async initialize() {
@@ -126,6 +139,10 @@ class EnhancedVermaOrchestrator {
     console.log('\n🔒 Initializing Code Sandbox...');
     this.sandbox = new CodeExecutionSandbox();
     
+    // HPIE - High-Performance Intelligence Engine
+    console.log('\n⚡ Initializing HPIE Intelligence Engine...');
+    await this.initializeHPIE();
+
     console.log('\n✅ All enhanced features loaded');
   }
 
@@ -201,6 +218,8 @@ class EnhancedVermaOrchestrator {
         return this.registry.syncSpiderWeb();
       case 'llm':
         return this.showLLMStatus();
+      case 'hpie':
+        return this.showHPIEStatus();
       case 'help':
         return this.showHelp();
       default:
@@ -337,7 +356,8 @@ class EnhancedVermaOrchestrator {
         llm: this.llm ? this.llm.getStatus() : 'offline',
         vibecoder: this.vibecoder ? 'ready' : 'offline',
         builder: this.builder ? 'ready' : 'offline',
-        sandbox: this.sandbox ? this.sandbox.getStatus() : 'offline'
+        sandbox: this.sandbox ? this.sandbox.getStatus() : 'offline',
+        hpie: this.hpie ? 'active' : 'offline'
       }
     };
     
@@ -354,7 +374,8 @@ class EnhancedVermaOrchestrator {
     console.log(`  Vibecoder: ${status.enhanced.vibecoder}`);
     console.log(`  Builder: ${status.enhanced.builder}`);
     console.log(`  Sandbox: ${status.enhanced.sandbox.activeProcesses || 0} processes`);
-    
+    console.log(`  HPIE Engine: ${status.enhanced.hpie}`);
+
     return status;
   }
 
@@ -438,6 +459,7 @@ INFORMATION:
   /verma skills               List loaded skills
   /verma workflows            List workflows
   /verma llm                  Show LLM status
+  /verma hpie                 Show HPIE engine status
   /verma sync                 Sync SpiderWeb
   /verma help                 Show this help
 
@@ -447,6 +469,125 @@ QUICK START:
   "Create a Python API for user management"
   "Make a mobile app for tracking expenses"
 `);
+  }
+
+  // -----------------------------------------------------------------------
+  // HPIE Subsystem
+  // -----------------------------------------------------------------------
+  async initializeHPIE() {
+    try {
+      // 1. Core intelligence engine
+      const engine = new HighPerformanceIntelligenceEngine({
+        maxConcurrentTasks: parseInt(process.env.AGENTS_MAX_CONCURRENT || '10', 10),
+        cacheCapacity: parseInt(process.env.HPIE_CACHE_CAPACITY || '256', 10),
+        compressionLevel: parseInt(process.env.POWERUSAGE_LEVEL || '3', 10)
+      });
+      await engine.initialize();
+
+      // 2. Security hardening
+      const security = new SecurityHardeningModule();
+      await security.initialize();
+
+      // 3. Zero-hallucination verification
+      const verification = new ZeroHallucinationFramework({
+        confidenceThreshold: parseFloat(process.env.HPIE_CONFIDENCE_THRESHOLD || '0.6')
+      });
+
+      // 4. Multi-agent autonomous swarm
+      const swarm = new AgentSwarm({
+        maxConcurrentAgents: parseInt(process.env.AGENTS_MAX_CONCURRENT || '10', 10)
+      });
+
+      // 5. Platform bridge
+      const platform = new PlatformBridge();
+      const platformResult = await platform.detectAndInitialize(this);
+
+      // 6. Anti-bloat protocol
+      const antiBloat = new AntiBloatProtocol(process.cwd());
+
+      // Register existing agents in IAM
+      for (const [id, agent] of this.agents) {
+        const role = agent.role === 'central_brain' ? 'orchestrator'
+          : agent.role === 'auditor' ? 'auditor'
+          : 'specialist';
+        security.registerAgent(id, role);
+      }
+
+      // Register intelligence engine subsystems
+      engine.registerSubsystem('verification', async (payload) => {
+        return verification.verify(payload.text, payload.context);
+      });
+      engine.registerSubsystem('security_gate', async (payload) => {
+        return security.gate(payload.agentId, payload.permission, payload.input);
+      });
+
+      this.hpie = { engine, security, verification, swarm, platform, antiBloat };
+
+      console.log('  ✓ Intelligence Engine initialized');
+      console.log('  ✓ Security Hardening active (AES-256-GCM)');
+      console.log('  ✓ Zero-Hallucination Framework active');
+      console.log('  ✓ Multi-Agent Swarm ready (Critic/Optimizer/Executor)');
+      console.log(`  ✓ Platform Bridge: ${platformResult.platform}`);
+      console.log('  ✓ Anti-Bloat Protocol active');
+
+    } catch (error) {
+      console.error('  ⚠️  HPIE initialization error (non-fatal):', error.message);
+      this.hpie = null;
+    }
+  }
+
+  showHPIEStatus() {
+    if (!this.hpie) {
+      console.log('\n⚠️  HPIE not initialized');
+      return { status: 'offline' };
+    }
+
+    const engineReport = this.hpie.engine.getPerformanceReport();
+    const securityStatus = this.hpie.security.getStatus();
+    const verificationStats = this.hpie.verification.getStats();
+    const swarmStats = this.hpie.swarm.getStats();
+    const platformStatus = this.hpie.platform.getStatus();
+    const bloatAnalysis = this.hpie.antiBloat.analyze();
+
+    console.log('\n⚡ HPIE - High-Performance Intelligence Engine');
+    console.log('='.repeat(60));
+
+    console.log('\n  ENGINE:');
+    console.log(`    Uptime: ${engineReport.engine.uptime}`);
+    console.log(`    Tasks: ${engineReport.tasks.completed} completed, ${engineReport.tasks.failed} failed`);
+    console.log(`    Throughput: ${engineReport.tasks.throughput}`);
+    console.log(`    Cache hit rate: ${engineReport.cache.hitRate}`);
+    console.log(`    Object pool hit rate: ${engineReport.objectPool.hitRate}`);
+
+    console.log('\n  SECURITY:');
+    console.log(`    Identities: ${securityStatus.iam.identities}`);
+    console.log(`    Active sessions: ${securityStatus.iam.activeSessions}`);
+    console.log(`    Encryption: ${securityStatus.encryption.algorithm} (${securityStatus.encryption.keyLength}-bit)`);
+
+    console.log('\n  VERIFICATION:');
+    console.log(`    Total: ${verificationStats.totalVerifications}`);
+    console.log(`    Pass rate: ${verificationStats.passRate}`);
+
+    console.log('\n  MULTI-AGENT SWARM:');
+    console.log(`    Dispatched: ${swarmStats.totalDispatched}`);
+    console.log(`    Roles: ${swarmStats.roles.join(', ')}`);
+
+    console.log('\n  PLATFORM:');
+    console.log(`    Active: ${platformStatus.activePlatform}`);
+    console.log(`    Detected: ${platformStatus.detected.join(', ') || 'local only'}`);
+
+    console.log('\n  ANTI-BLOAT:');
+    console.log(`    Score: ${bloatAnalysis.score.value}/100 (${bloatAnalysis.score.grade} - ${bloatAnalysis.score.label})`);
+    console.log(`    Memory: ${bloatAnalysis.memoryFootprint.heapUsedMB}MB / ${bloatAnalysis.memoryFootprint.heapTotalMB}MB`);
+
+    return {
+      engine: engineReport,
+      security: securityStatus,
+      verification: verificationStats,
+      swarm: swarmStats,
+      platform: platformStatus,
+      bloat: bloatAnalysis.score
+    };
   }
 
   // Legacy compatibility

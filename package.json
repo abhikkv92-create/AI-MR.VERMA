@@ -20,6 +20,7 @@
     "workflows": "node -e \"const v=require('./core/enhanced-orchestrator');const o=new v();o.initialize().then(()=>o.showWorkflows())\"",
     "status": "node -e \"const v=require('./core/enhanced-orchestrator');const o=new v();o.initialize().then(()=>o.getFullStatus())\"",
     "sync": "node -e \"const v=require('./core/enhanced-orchestrator');const o=new v();o.initialize().then(()=>o.registry.syncSpiderWeb())\"",
+    "hpie:status": "node -e \"const v=require('./core/enhanced-orchestrator');const o=new v();o.initialize().then(()=>o.showHPIEStatus())\"",
     "test": "echo \"Tests coming soon...\"",
     "lint": "echo \"Linting not configured yet\"",
     "install:ollama": "echo \"Please install Ollama from https://ollama.com/download\"",
@@ -37,7 +38,11 @@
     "code-generation",
     "chat",
     "development",
-    "automation"
+    "automation",
+    "hpie",
+    "zero-hallucination",
+    "security-hardening",
+    "multi-agent"
   ],
   "author": "MR.VERMA",
   "license": "MIT",
@@ -54,7 +59,8 @@
     "opencode": true,
     "traeai": true,
     "local": true,
-    "docker": true
+    "docker": true,
+    "antigravity": true
   },
   "features": {
     "chat": true,
@@ -62,6 +68,9 @@
     "localLLM": true,
     "codeExecution": true,
     "multiAgent": true,
-    "workflows": true
+    "workflows": true,
+    "hpie": true,
+    "zeroHallucination": true,
+    "securityHardening": true
   }
 }
