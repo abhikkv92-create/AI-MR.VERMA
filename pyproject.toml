@@ -19,11 +19,8 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    # Core dependencies from existing requirements
-    "torch",
-    "transformers",
-    "peft",
-    "datasets",
+    # Runtime dependencies (installed via requirements.unified.txt)
+    # See requirements.unified.txt for full list
     "setuptools",
     "wheel",
 ]

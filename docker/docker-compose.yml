@@ -9,8 +9,8 @@ services:
   # ═══════════════════════════════════════════════════════════════════════════════
   collector:
     build:
-      context: .
-      dockerfile: Dockerfile.collector
+      context: ..
+      dockerfile: docker/Dockerfile.collector
     container_name: mrverma-collector
     restart: unless-stopped
     ports:
@@ -78,8 +78,8 @@ services:
   # ═══════════════════════════════════════════════════════════════════════════════
   trainer:
     build:
-      context: .
-      dockerfile: Dockerfile.trainer
+      context: ..
+      dockerfile: docker/Dockerfile.trainer
     container_name: mrverma-trainer
     restart: unless-stopped
     volumes:
