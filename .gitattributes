@@ -1,0 +1,61 @@
+# =============================================================================
+# LINE ENDINGS
+# =============================================================================
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Explicitly declare text files
+*.py text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Declare files that will always have CRLF line endings on checkout
+*.sln text eol=crlf
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.so binary
+*.dll binary
+*.exe binary
+
+# =============================================================================
+# DIFF BEHAVIOR
+# =============================================================================
+# Better diffs for Python
+*.py diff=python
+
+# Better diffs for Markdown
+*.md diff=markdown
+
+# Treat lock files as generated (collapse in diff)
+*.lock linguist-generated=true
+package-lock.json linguist-generated=true
+poetry.lock linguist-generated=true
+
+# =============================================================================
+# GITHUB LINGUIST
+# =============================================================================
+# Exclude vendored files from language stats
+node_modules/* linguist-vendored

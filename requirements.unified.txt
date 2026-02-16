@@ -3,13 +3,6 @@
 # Optimized for automated architecture generation
 
 # ===========================================
-# Core Web Framework
-# ===========================================
-flask>=2.3.0
-flask-cors>=4.0.0
-gunicorn>=21.0.0
-
-# ===========================================
 # AI/ML APIs
 # ===========================================
 requests>=2.31.0
@@ -19,8 +12,6 @@ openai>=1.0.0
 # Data Processing
 # ===========================================
 numpy>=1.24.0
-pandas>=2.0.0
-scipy>=1.11.0
 
 # ===========================================
 # System Utilities
@@ -58,30 +49,13 @@ xlsxwriter>=3.1.9         # Excel alternative/fallback
 # Vector Embeddings & Semantic Search
 # ===========================================
 sentence-transformers>=2.2.2  # Embeddings generation
-transformers>=4.30.0          # Hugging Face models
-torch>=2.0.0                  # PyTorch backend
-qdrant-client>=1.7.0          # Vector database client
 faiss-cpu>=1.7.4              # Facebook AI Similarity Search (fallback)
 chromadb>=0.4.0               # Alternative vector store
 
 # ===========================================
-# Database & ORM
-# ===========================================
-sqlalchemy>=2.0.0             # SQL ORM
-alembic>=1.12.0               # Database migrations
-pymongo>=4.6.0                # MongoDB driver
-redis>=5.0.0                  # Redis cache/storage
-
-# ===========================================
-# Templating Engines
-# ===========================================
-jinja2>=3.1.2                 # Modern templating
-mako>=1.2.4                   # Alternative templating
-
-# ===========================================
 # Optional Vector DB (commented by default)
 # ===========================================
-pymilvus>=2.3.0             # Milvus vector database (Primary)
+# pymilvus>=2.3.0             # Milvus vector database (Primary)
 
 # ===========================================
 # External Tool Requirements (NOT installed via pip)

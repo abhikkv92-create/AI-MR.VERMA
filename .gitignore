@@ -1,34 +1,164 @@
-# Node.js
+# =============================================================================
+# PYTHON
+# =============================================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+parts/
+bin/
+var/
+wheels/
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+.ruff_cache/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# Django / Flask
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+
+# =============================================================================
+# NODE.JS
+# =============================================================================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.npm
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
 
-# Environment
+# =============================================================================
+# ENVIRONMENT & SECRETS
+# =============================================================================
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+!.env.example
+!.env.template
+*.pem
+*.key
+secrets/
+credentials/
+secrets.yaml
+secrets.yml
 
-# OS Files
-.DS_Store
-Thumbs.db
-desktop.ini
+# =============================================================================
+# MR.VERMA PROJECT SPECIFIC
+# =============================================================================
+# AI Tool conversation logs and local data
+.verma/
+.claude/settings.local.json
+.qoder/
+.trae/
+logs/*.log
+.agent/local/
+.agent/temp/
+.agent/logs/
 
-# IDEs
+# Runtime data directories
+data/*
+!data/.gitkeep
+output/*
+!output/.gitkeep
+temp/
+tmp/
+blobs/
+Manifests/
+manifests/
+nul
+
+# Legacy / Archive
+archive/
+old/
+backup/
+backups/
+*.bak
+*.swp
+*.swo
+*~
+
+# =============================================================================
+# IDE & EDITORS
+# =============================================================================
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.code-workspace
 
-# Project Specific
-nul
-blobs/
-Manifests/
-manifests/
-temp/
-tmp/
-dist/
-build/
+# =============================================================================
+# OS FILES
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# =============================================================================
+# DOCUMENTATION BUILD ARTIFACTS
+# =============================================================================
+site/
+docs/_build/
+documentation/_build/
+*.html.pdf

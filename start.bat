@@ -1,6 +1,19 @@
 @echo off
 chcp 65001 >nul
-title MR.VERMA - AI Intelligence System
+
+:: Parse mode parameter
+set MODE=%1
+if "%MODE%"=="" set MODE=unified
+
+:: Set title based on mode
+if "%MODE%"=="enhanced" (
+    title MR.VERMA Enhanced - AI Platform with Agents
+) else if "%MODE%"=="ultimate" (
+    title MR.VERMA Ultimate - AI Platform with Prompt Library
+) else (
+    title MR.VERMA - AI Intelligence System
+)
+
 cls
 
 echo.
@@ -11,7 +24,16 @@ echo    ██║╚██╔╝██║██╔══██╗     ╚██�
 echo    ██║ ╚═╝ ██║██║  ██║      ╚████╔╝ ███████╗██║  ██║██║ ╚═╝ ██║██║  ██║
 echo    ╚═╝     ╚═╝╚═╝  ╚═╝       ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝
 echo.
-echo                     🤖 UNIFIED AI INTELLIGENCE PLATFORM
+
+:: Display mode-specific header
+if "%MODE%"=="enhanced" (
+    echo           🤖 ENHANCED AI PLATFORM with AGENTS, SKILLS ^& WORKFLOWS
+) else if "%MODE%"=="ultimate" (
+    echo        🤖 ULTIMATE AI PLATFORM + 82 SYSTEM PROMPTS FROM LEADING TOOLS
+    echo        Claude • Cursor • Devin • Lovable • v0 • Augment + 25 More!
+) else (
+    echo                     🤖 UNIFIED AI INTELLIGENCE PLATFORM
+)
 echo.
 
 :: Set working directory
@@ -105,13 +127,28 @@ echo.
 echo    [5/5] 🎯 Launching MR.VERMA Interface...
 echo.
 echo    ════════════════════════════════════════════════════════════
-echo    🎉 MR.VERMA is ready! Press any key to start...
+
+:: Display mode-specific message
+if "%MODE%"=="enhanced" (
+    echo    🎉 MR.VERMA Enhanced is ready! Press any key to start...
+) else if "%MODE%"=="ultimate" (
+    echo    🎉 MR.VERMA Ultimate is ready! Press any key to start...
+) else (
+    echo    🎉 MR.VERMA is ready! Press any key to start...
+)
+
 echo    ════════════════════════════════════════════════════════════
 echo.
 pause >nul
 
-:: Launch the unified interface
-python unified\mrverma.py
+:: Launch the appropriate interface
+if "%MODE%"=="enhanced" (
+    python unified\mrverma.py --mode enhanced
+) else if "%MODE%"=="ultimate" (
+    python unified\mrverma.py --mode ultimate
+) else (
+    python unified\mrverma.py --mode unified
+)
 
 :: Cleanup on exit
 call venv\Scripts\deactivate.bat 2>nul
