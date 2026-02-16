@@ -1,0 +1,22 @@
+{
+  "id": "1770828084-847193939242840380",
+  "timestamp": 1770828084.4642124,
+  "request": {
+    "model": "moonshotai/kimi-k2.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      }
+    ],
+    "stream": true
+  },
+  "response": "Hello! How can I help you today?",
+  "model": "moonshotai/kimi-k2.5",
+  "inference_mode": "cached",
+  "agent_name": "cache",
+  "latency": 7.319450378417969e-05,
+  "guards": [],
+  "feedback": null,
+  "backend": "nvidia-kimi-k2.5"
+}

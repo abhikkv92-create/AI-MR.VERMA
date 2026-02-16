@@ -1,0 +1,27 @@
+﻿# context-manager Agent Template
+
+## Overview
+This agent specializes in context-manager functionality within the MR.VERMA system.
+
+## Capabilities
+- Advanced analysis and problem-solving
+- Code optimization and refactoring
+- Performance monitoring and enhancement
+- Cross-platform compatibility
+
+## Configuration
+- Priority: Normal
+- Timeout: 5 minutes
+- Dependencies: None
+
+## Usage
+This agent can be invoked through the unified command interface.
+
+## Examples
+`powershell
+# Example usage
+Invoke-Agent -Name "context-manager" -Parameters @{}
+`
+
+## Notes
+Auto-generated template for context-manager agent.

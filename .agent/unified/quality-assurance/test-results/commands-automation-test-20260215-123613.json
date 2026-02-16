@@ -1,0 +1,76 @@
+﻿{
+    "executionTime":  0.0484038,
+    "passed":  false,
+    "componentName":  "automation",
+    "overallScore":  38.8,
+    "componentType":  "commands",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+    "complianceLevel":  "Poor",
+    "tests":  [
+                  {
+                      "component":  "automation",
+                      "recommendations":  [
+                                              "Use descriptive words separated by hyphens"
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[WARN] Semantic warning: consider improving readability"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  80
+                  },
+                  {
+                      "missingFiles":  [
+                                           "command.json",
+                                           "implementation.js"
+                                       ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[FAIL] Missing required file: command.json",
+                                      "[FAIL] Missing required file: implementation.js",
+                                      "Subdirectories found: 1"
+                                  ],
+                      "type":  "commands",
+                      "test":  "File Structure",
+                      "score":  5
+                  },
+                  {
+                      "compatibility":  [
+
+                                        ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                      "dependencies":  [
+
+                                       ],
+                      "type":  "commands",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No implementation files found",
+                                        "No documentation files found"
+                                    ],
+                      "score":  0
+                  },
+                  {
+                      "loadTime":  0,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                      "type":  "commands",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  null
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 12:36:13"
+}

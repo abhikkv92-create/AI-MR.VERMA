@@ -11,10 +11,10 @@ USAGE:
   python submit_feedback.py <interaction_id> rejected   (code was not used)
 """
 
-import os
-import sys
 import glob
 import json
+import os
+import sys
 
 INTERACTION_DIR = "/app/data/interactions"
 
@@ -23,7 +23,7 @@ def submit(interaction_id: str, feedback_type: str):
     found = False
     for filepath in glob.glob(os.path.join(INTERACTION_DIR, "interactions_*.jsonl")):
         lines = []
-        with open(filepath, "r") as f:
+        with open(filepath) as f:
             for line in f:
                 if not line.strip():
                     continue

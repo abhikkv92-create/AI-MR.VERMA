@@ -1,7 +1,10 @@
 import os
-import glob
+import sys
 import logging
-import re
+
+# Add project root to path for core imports
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from core.plugin_orchestrator import orchestrator as plugin_orchestrator
 
 log = logging.getLogger(__name__)
 
@@ -15,11 +18,11 @@ class SkillsManager:
         self.skills_dir = os.path.join(base_dir, "skills")
         self.agents_dir = os.path.join(base_dir, "agents")
         self.workflows_dir = os.path.join(base_dir, "workflows")
-        
+
         self.skills_index = {}
         self.agents_index = {}
         self.workflows_index = {}
-        
+
         self._build_index()
 
     def _build_index(self):
@@ -35,7 +38,7 @@ class SkillsManager:
                 folder_name = os.path.basename(os.path.dirname(filepath))
                 self.skills_index[folder_name] = {"path": filepath}
             except Exception: pass
-            
+
         # 2. Index Agents
         agent_files = glob.glob(os.path.join(self.agents_dir, "*.md"))
         for filepath in agent_files:
@@ -51,20 +54,29 @@ class SkillsManager:
                 name = os.path.basename(filepath).replace(".md", "")
                 self.workflows_index[name] = {"path": filepath}
             except Exception: pass
-            
+
         log.info(f"Indexed: {len(self.skills_index)} Skills, {len(self.agents_index)} Agents, {len(self.workflows_index)} Workflows.")
 
     def get_content(self, path):
         try:
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 return f.read()
         except: return None
 
     def get_agent_persona(self, agent_name):
-        """Retrieve full agent persona."""
+        """Retrieve full agent persona (Checks legacy and Next-Gen plugins)."""
         cleaned_name = agent_name.replace("@", "").lower().strip()
+        
+        # 1. Check Legacy Index
         if cleaned_name in self.agents_index:
             return self.get_content(self.agents_index[cleaned_name]["path"])
+            
+        # 2. Check Next-Gen Plugin Orchestrator
+        plugin_agent = plugin_orchestrator.get_agent(cleaned_name)
+        if plugin_agent:
+            log.info(f"Retrieved Next-Gen agent: {cleaned_name}")
+            return f"{plugin_agent['content']}"
+
         return None
 
     def get_workflow(self, workflow_name):
@@ -86,11 +98,11 @@ class SkillsManager:
         """
         query = query.lower()
         matches = []
-        
+
         # Priority: Exact match in skill name
         for name in self.skills_index:
             if name in query or query in name:
                 matches.append(name)
-        
+
         # Limit to top 1
-        return matches[:1] 
+        return matches[:1]

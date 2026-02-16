@@ -1,0 +1,98 @@
+# MR.VERMA Docker Ignore File
+# Files and directories to exclude from Docker builds
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+
+# Data (except for development)
+data/
+!data/.gitkeep
+
+# Checkpoints
+checkpoints/
+!checkpoints/.gitkeep
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Documentation (optional - include if needed)
+docs/
+*.md
+!README.md
+
+# Tests (optional - include if needed for production)
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment files (security)
+.env
+.env.*
+!.env.example
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.docker/
+
+# Node.js (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Miscellaneous
+*.bak
+*.backup
+*.old

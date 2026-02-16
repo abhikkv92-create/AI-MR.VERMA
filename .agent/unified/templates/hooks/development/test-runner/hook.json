@@ -1,0 +1,20 @@
+﻿{
+  "name": "test-runner",
+  "version": "1.0.0",
+  "description": "Claude Code hook for test-runner",
+  "type": "hook",
+  "category": "testing",
+  "subcategory": "test-runner",
+  "enabled": true,
+  "config": {
+    "trigger_events": [],
+    "execution_order": 1,
+    "async": true
+  },
+  "conditions": {},
+  "actions": [],
+  "integration": {
+    "claude_code": true,
+    "mr_verma": true
+  }
+}

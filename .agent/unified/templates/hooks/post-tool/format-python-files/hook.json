@@ -1,0 +1,21 @@
+﻿{
+    "version":  "1.0.0",
+    "category":  "post-tool",
+    "name":  "format-python-files",
+    "description":  "Hook template for format-python-files",
+    "priority":  "normal",
+    "trigger":  "post-tool",
+    "enabled":  true,
+    "conditions":  {
+                       "fileExtensions":  [
+                                              ".py",
+                                              ".js",
+                                              ".ts"
+                                          ],
+                       "toolTypes":  [
+                                         "format",
+                                         "test",
+                                         "deploy"
+                                     ]
+                   }
+}

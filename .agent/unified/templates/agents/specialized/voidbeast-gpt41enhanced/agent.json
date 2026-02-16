@@ -1,0 +1,24 @@
+﻿{
+    "description":  "Agent template for voidbeast-gpt41enhanced",
+    "capabilities":  [
+                         "analysis",
+                         "development",
+                         "optimization"
+                     ],
+    "version":  "1.0.0",
+    "category":  "expert-advisors",
+    "author":  "MR.VERMA System",
+    "created":  "2026-02-15",
+    "name":  "voidbeast-gpt41enhanced",
+    "settings":  {
+                     "priority":  "normal",
+                     "timeout":  300,
+                     "enabled":  true
+                 },
+    "requirements":  {
+                         "minimumVersion":  "1.0.0",
+                         "dependencies":  [
+
+                                          ]
+                     }
+}

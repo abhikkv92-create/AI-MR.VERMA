@@ -1,0 +1,75 @@
+﻿{
+    "executionTime":  0.0061435,
+    "passed":  true,
+    "componentName":  "test-runner",
+    "overallScore":  86.2,
+    "componentType":  "hooks",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\test-runner",
+    "complianceLevel":  "Good",
+    "tests":  [
+                  {
+                      "component":  "test-runner",
+                      "recommendations":  [
+
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\test-runner",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[PASS] Semantic clarity: well-structured naming"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  100
+                  },
+                  {
+                      "missingFiles":  [
+
+                                       ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\test-runner",
+                      "extraFiles":  [
+                                         "hook.js"
+                                     ],
+                      "details":  [
+                                      "[PASS] Found required file: hook.json",
+                                      "[PASS] Found required file: implementation.js",
+                                      "Extra file found: hook.js",
+                                      "[PASS] Clean directory structure"
+                                  ],
+                      "type":  "hooks",
+                      "test":  "File Structure",
+                      "score":  90
+                  },
+                  {
+                      "compatibility":  [
+                                            "[PASS] Configuration parsing successful",
+                                            "[PASS] Implementation files found",
+                                            "[PASS] Syntax validation passed for implementation.js"
+                                        ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\test-runner",
+                      "dependencies":  null,
+                      "type":  "hooks",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No documentation files found"
+                                    ],
+                      "score":  85
+                  },
+                  {
+                      "loadTime":  1.5401,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\test-runner",
+                      "type":  "hooks",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  1549
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 13:09:24"
+}

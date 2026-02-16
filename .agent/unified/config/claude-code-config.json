@@ -1,0 +1,563 @@
+{
+  "version": "2.0",
+  "name": "MR.VERMA-Claude-Integration",
+  "description": "Comprehensive Claude Code integration for MR.VERMA system",
+  "agents": {
+    "development-tools/tooling-engineer": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "auto_tool_selection": true,
+        "optimization_level": "advanced",
+        "cache_enabled": true
+      }
+    },
+    "security/powershell-security-hardening": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "security_level": "strict",
+        "audit_mode": true,
+        "compliance_checks": ["CIS", "NIST"]
+      }
+    },
+    "programming-languages/powershell-ui-architect": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "ui_framework": "modern",
+        "accessibility": true,
+        "responsive_design": true
+      }
+    },
+    "development-tools/command-expert": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "shell_preference": "powershell",
+        "command_history": true,
+        "auto_completion": true
+      }
+    },
+    "data-ai/machine-learning-engineer": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "frameworks": ["pytorch", "tensorflow", "scikit-learn"],
+        "auto_model_selection": true,
+        "hyperparameter_tuning": true
+      }
+    },
+    "development-team/electron-pro": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "electron_version": "latest",
+        "security_hardening": true,
+        "auto_updater": true
+      }
+    },
+    "development-team/mobile-app-developer": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "platforms": ["ios", "android", "cross-platform"],
+        "testing_framework": "jest",
+        "ci_cd": true
+      }
+    },
+    "development-team/mobile-developer": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "frameworks": ["react-native", "flutter", "ionic"],
+        "native_modules": true,
+        "performance_monitoring": true
+      }
+    },
+    "development-tools/debugger": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "debug_level": "verbose",
+        "breakpoints": true,
+        "variable_inspection": true,
+        "call_stack_analysis": true
+      }
+    },
+    "development-tools/performance-engineer": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "profiling_enabled": true,
+        "benchmarking": true,
+        "optimization_suggestions": true,
+        "real_time_monitoring": true
+      }
+    },
+    "development-tools/performance-profiler": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "profiling_tools": ["perf", "valgrind", "gprof"],
+        "memory_analysis": true,
+        "cpu_profiling": true,
+        "io_profiling": true
+      }
+    },
+    "expert-advisors/agent-organizer": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "auto_coordination": true,
+        "conflict_resolution": true,
+        "load_balancing": true
+      }
+    },
+    "expert-advisors/context-manager": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "context_persistence": true,
+        "memory_optimization": true,
+        "state_synchronization": true
+      }
+    },
+    "expert-advisors/performance-monitor": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "metrics_collection": ["cpu", "memory", "io", "network"],
+        "alerting": true,
+        "dashboard": true
+      }
+    },
+    "expert-advisors/task-distributor": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "task_routing": "intelligent",
+        "load_distribution": true,
+        "priority_queues": true
+      }
+    },
+    "expert-advisors/voidbeast-gpt41enhanced": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "model_version": "gpt-4.1",
+        "enhancement_level": "advanced",
+        "optimization": true
+      }
+    },
+    "performance-testing/react-performance-optimization": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "profiling_tools": ["react-profiler", "chrome-devtools"],
+        "optimization_techniques": ["memoization", "lazy-loading", "code-splitting"],
+        "bundle_analysis": true
+      }
+    },
+    "programming-languages/c-pro": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "standard": "c17",
+        "optimization_level": "o3",
+        "static_analysis": true
+      }
+    },
+    "programming-languages/cpp-pro": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "standard": "c++20",
+        "template_instantiation": true,
+        "move_semantics": true
+      }
+    },
+    "programming-languages/csharp-developer": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "dotnet_version": "8.0",
+        "nullable_reference_types": true,
+        "async_await": true
+      }
+    },
+    "programming-languages/elixir-expert": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "otp_version": "26",
+        "supervision_trees": true,
+        "hot_code_reloading": true
+      }
+    },
+    "programming-languages/embedded-systems": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "platforms": ["arduino", "esp32", "raspberry-pi"],
+        "real_time": true,
+        "low_power": true
+      }
+    },
+    "programming-languages/flutter-expert": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "flutter_version": "3.16",
+        "dart_version": "3.2",
+        "state_management": "bloc"
+      }
+    },
+    "programming-languages/golang-pro": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "go_version": "1.21",
+        "modules": true,
+        "goroutines": true,
+        "channels": true
+      }
+    },
+    "programming-languages/javascript-pro": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "ecma_version": "2023",
+        "strict_mode": true,
+        "async_await": true,
+        "modules": "esm"
+      }
+    },
+    "programming-languages/rust-engineer": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "edition": "2021",
+        "unsafe_code": "minimal",
+        "lifetime_elision": true
+      }
+    },
+    "programming-languages/rust-pro": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "edition": "2021",
+        "async_await": true,
+        "tokio_runtime": true
+      }
+    },
+    "programming-languages/swift-expert": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "swift_version": "5.9",
+        "concurrency": true,
+        "property_wrappers": true
+      }
+    },
+    "realtime/websocket-engineer": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "protocols": ["ws", "wss"],
+        "heartbeat": true,
+        "reconnection": true
+      }
+    }
+  },
+  "commands": {
+    "automation/workflow-orchestrator": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "parallel_execution": true,
+        "error_handling": "graceful",
+        "retry_logic": true
+      }
+    },
+    "deployment/changelog-demo-command": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "auto_changelog": true,
+        "demo_deployment": true,
+        "version_bumping": true
+      }
+    },
+    "team/memory-spring-cleaning": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "schedule": "0 2 * * 0",
+        "cleanup_threshold": "30d",
+        "compression": true
+      }
+    },
+    "performance/optimize-memory-usage": {
+      "enabled": true,
+      "priority": "high",
+      "config": {
+        "monitoring_interval": "5m",
+        "optimization_threshold": "80%",
+        "auto_cleanup": true
+      }
+    },
+    "team/session-learning-capture": {
+      "enabled": true,
+      "priority": "medium",
+      "config": {
+        "capture_patterns": true,
+        "insight_extraction": true,
+        "knowledge_base_update": true
+      }
+    }
+  },
+  "statusline": {
+    "statusline/vercel-multi-env-status": {
+      "enabled": true,
+      "config": {
+        "environments": ["development", "staging", "production"],
+        "update_interval": "30s",
+        "health_checks": true
+      }
+    },
+    "statusline/command-statusline": {
+      "enabled": true,
+      "config": {
+        "show_progress": true,
+        "show_errors": true,
+        "show_warnings": true,
+        "update_frequency": "realtime"
+      }
+    },
+    "statusline/game-performance-monitor-statusline": {
+      "enabled": true,
+      "config": {
+        "metrics": ["fps", "memory", "cpu", "gpu"],
+        "alert_thresholds": {
+          "fps": 30,
+          "memory": "80%",
+          "cpu": "90%"
+        }
+      }
+    },
+    "statusline/unity-project-dashboard-statusline": {
+      "enabled": true,
+      "config": {
+        "project_tracking": true,
+        "build_status": true,
+        "scene_info": true,
+        "asset_count": true
+      }
+    }
+  },
+  "hooks": {
+    "post-tool/format-python-files": {
+      "enabled": true,
+      "config": {
+        "formatter": "black",
+        "line_length": 88,
+        "import_sorter": "isort"
+      }
+    },
+    "testing/test-runner": {
+      "enabled": true,
+      "config": {
+        "test_framework": "pytest",
+        "coverage_threshold": 80,
+        "parallel_execution": true
+      }
+    },
+    "development-tools/command-logger": {
+      "enabled": true,
+      "config": {
+        "log_level": "info",
+        "include_args": true,
+        "include_results": true,
+        "retention_days": 30
+      }
+    },
+    "performance/performance-monitor": {
+      "enabled": true,
+      "config": {
+        "metrics": ["response_time", "memory_usage", "cpu_usage", "error_rate"],
+        "alerting": true,
+        "dashboard": true
+      }
+    }
+  },
+  "mcp": {
+    "integration/memory-integration": {
+      "enabled": true,
+      "config": {
+        "protocol_version": "1.0",
+        "context_persistence": true,
+        "memory_optimization": true,
+        "state_synchronization": true
+      }
+    }
+  },
+  "skills": {
+    "ai-research/agent-memory-mcp": {
+      "enabled": true,
+      "config": {
+        "memory_backend": "redis",
+        "context_window": 4096,
+        "compression": true
+      }
+    },
+    "ai-research/agent-memory-systems": {
+      "enabled": true,
+      "config": {
+        "architecture": "distributed",
+        "consistency": "eventual",
+        "fault_tolerance": true
+      }
+    },
+    "ai-research/agents-crewai": {
+      "enabled": true,
+      "config": {
+        "max_agents": 10,
+        "coordination": "hierarchical",
+        "communication": "async"
+      }
+    },
+    "ai-research/agents-langchain": {
+      "enabled": true,
+      "config": {
+        "chain_type": "conversational",
+        "memory_type": "buffer",
+        "llm_backend": "openai"
+      }
+    },
+    "ai-research/fine-tuning-peft": {
+      "enabled": true,
+      "config": {
+        "method": "lora",
+        "rank": 16,
+        "alpha": 32,
+        "target_modules": ["q_proj", "v_proj"]
+      }
+    },
+    "ai-research/optimization-hqq": {
+      "enabled": true,
+      "config": {
+        "quantization_bits": 4,
+        "group_size": 64,
+        "act_order": true
+      }
+    },
+    "ai-research/optimization-gptq": {
+      "enabled": true,
+      "config": {
+        "bits": 4,
+        "group_size": 128,
+        "damp_percent": 0.1
+      }
+    },
+    "ai-research/optimization-flash-attention": {
+      "enabled": true,
+      "config": {
+        "implementation": "flash_attention_2",
+        "precision": "bf16",
+        "causal": true
+      }
+    },
+    "ai-research/optimization-bitsandbytes": {
+      "enabled": true,
+      "config": {
+        "quantization_type": "nf4",
+        "double_quant": true,
+        "compute_dtype": "bf16"
+      }
+    },
+    "ai-research/fine-tuning-unsloth": {
+      "enabled": true,
+      "config": {
+        "max_seq_length": 2048,
+        "gradient_checkpointing": true,
+        "flash_attention": true
+      }
+    },
+    "ai-research/tokenization-sentencepiece": {
+      "enabled": true,
+      "config": {
+        "model_type": "bpe",
+        "vocab_size": 32000,
+        "character_coverage": 0.9995
+      }
+    },
+    "ai-research/inference-serving-vllm": {
+      "enabled": true,
+      "config": {
+        "tensor_parallel_size": 1,
+        "pipeline_parallel_size": 1,
+        "max_num_seqs": 256
+      }
+    },
+    "ai-research/inference-serving-llama-cpp": {
+      "enabled": true,
+      "config": {
+        "n_threads": 8,
+        "n_batch": 512,
+        "use_mmap": true
+      }
+    },
+    "ai-research/crewai": {
+      "enabled": true,
+      "config": {
+        "max_iterations": 10,
+        "verbose": true,
+        "memory": true
+      }
+    },
+    "ai-research/ai-agents-architect": {
+      "enabled": true,
+      "config": {
+        "design_patterns": ["microservices", "event-driven"],
+        "scalability": "horizontal",
+        "fault_tolerance": true
+      }
+    },
+    "scientific/vaex": {
+      "enabled": true,
+      "config": {
+        "lazy_loading": true,
+        "parallel": true,
+        "memory_mapping": true
+      }
+    },
+    "scientific/get-available-resources": {
+      "enabled": true,
+      "config": {
+        "monitoring_interval": "30s",
+        "alert_thresholds": {
+          "cpu": 90,
+          "memory": 85,
+          "disk": 90
+        }
+      }
+    },
+    "enterprise-communication/session-handoff": {
+      "enabled": true,
+      "config": {
+        "handoff_protocol": "secure",
+        "context_preservation": true,
+        "encryption": true
+      }
+    },
+    "railway/metrics": {
+      "enabled": true,
+      "config": {
+        "deployment_tracking": true,
+        "performance_metrics": true,
+        "error_monitoring": true
+      }
+    }
+  }
+}

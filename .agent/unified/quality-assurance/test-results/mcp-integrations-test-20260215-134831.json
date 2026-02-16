@@ -1,0 +1,76 @@
+﻿{
+    "executionTime":  0.0030748,
+    "passed":  false,
+    "componentName":  "integrations",
+    "overallScore":  38.8,
+    "componentType":  "mcp",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\mcp\\integrations",
+    "complianceLevel":  "Poor",
+    "tests":  [
+                  {
+                      "component":  "integrations",
+                      "recommendations":  [
+                                              "Use descriptive words separated by hyphens"
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\mcp\\integrations",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[WARN] Semantic warning: consider improving readability"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  80
+                  },
+                  {
+                      "missingFiles":  [
+                                           "mcp.json",
+                                           "implementation.js"
+                                       ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\mcp\\integrations",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[FAIL] Missing required file: mcp.json",
+                                      "[FAIL] Missing required file: implementation.js",
+                                      "Subdirectories found: 1"
+                                  ],
+                      "type":  "mcp",
+                      "test":  "File Structure",
+                      "score":  5
+                  },
+                  {
+                      "compatibility":  [
+
+                                        ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\mcp\\integrations",
+                      "dependencies":  [
+
+                                       ],
+                      "type":  "mcp",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No implementation files found",
+                                        "No documentation files found"
+                                    ],
+                      "score":  0
+                  },
+                  {
+                      "loadTime":  0,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\mcp\\integrations",
+                      "type":  "mcp",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  null
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 13:48:31"
+}

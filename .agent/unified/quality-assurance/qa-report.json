@@ -1,0 +1,299 @@
+﻿{
+    "reportTimestamp":  "2026-02-15 13:48:31",
+    "componentAnalysis":  {
+                              "improvementNeeded":  [
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "architecture",
+                                                            "type":  "agents",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "development",
+                                                            "type":  "agents",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "programming",
+                                                            "type":  "agents",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "specialized",
+                                                            "type":  "agents",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "automation",
+                                                            "type":  "commands",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "development",
+                                                            "type":  "commands",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  40,
+                                                            "name":  "system",
+                                                            "type":  "commands",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "statuslines",
+                                                            "type":  "settings",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "development",
+                                                            "type":  "hooks",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "monitoring",
+                                                            "type":  "hooks",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  43.8,
+                                                            "name":  "post-tool",
+                                                            "type":  "hooks",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "integrations",
+                                                            "type":  "mcp",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  45,
+                                                            "name":  "ai-research",
+                                                            "type":  "skills",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  40,
+                                                            "name":  "canvas",
+                                                            "type":  "skills",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  38.8,
+                                                            "name":  "development",
+                                                            "type":  "skills",
+                                                            "complianceLevel":  "Poor"
+                                                        },
+                                                        {
+                                                            "priority":  "High",
+                                                            "score":  40,
+                                                            "name":  "documentation",
+                                                            "type":  "skills",
+                                                            "complianceLevel":  "Poor"
+                                                        }
+                                                    ],
+                              "failedComponents":  [
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "architecture",
+                                                           "type":  "agents",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "development",
+                                                           "type":  "agents",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "programming",
+                                                           "type":  "agents",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "specialized",
+                                                           "type":  "agents",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "automation",
+                                                           "type":  "commands",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "development",
+                                                           "type":  "commands",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  40,
+                                                           "name":  "system",
+                                                           "type":  "commands",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "statuslines",
+                                                           "type":  "settings",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "development",
+                                                           "type":  "hooks",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "monitoring",
+                                                           "type":  "hooks",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  43.8,
+                                                           "name":  "post-tool",
+                                                           "type":  "hooks",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "integrations",
+                                                           "type":  "mcp",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  45,
+                                                           "name":  "ai-research",
+                                                           "type":  "skills",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  40,
+                                                           "name":  "canvas",
+                                                           "type":  "skills",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  38.8,
+                                                           "name":  "development",
+                                                           "type":  "skills",
+                                                           "complianceLevel":  "Poor"
+                                                       },
+                                                       {
+                                                           "failedTests":  "File Structure, Component Integration",
+                                                           "score":  40,
+                                                           "name":  "documentation",
+                                                           "type":  "skills",
+                                                           "complianceLevel":  "Poor"
+                                                       }
+                                                   ],
+                              "byType":  {
+                                             "":  {
+                                                      "averageScore":  39.7,
+                                                      "complianceLevel":  "",
+                                                      "total":  16,
+                                                      "passed":  0
+                                                  }
+                                         },
+                              "topPerformers":  [
+                                                    {
+                                                        "score":  43.8,
+                                                        "name":  "post-tool",
+                                                        "type":  "hooks",
+                                                        "complianceLevel":  "Poor"
+                                                    },
+                                                    {
+                                                        "score":  38.8,
+                                                        "name":  "integrations",
+                                                        "type":  "mcp",
+                                                        "complianceLevel":  "Poor"
+                                                    },
+                                                    {
+                                                        "score":  38.8,
+                                                        "name":  "development",
+                                                        "type":  "hooks",
+                                                        "complianceLevel":  "Poor"
+                                                    },
+                                                    {
+                                                        "score":  38.8,
+                                                        "name":  "monitoring",
+                                                        "type":  "hooks",
+                                                        "complianceLevel":  "Poor"
+                                                    },
+                                                    {
+                                                        "score":  38.8,
+                                                        "name":  "development",
+                                                        "type":  "skills",
+                                                        "complianceLevel":  "Poor"
+                                                    }
+                                                ]
+                          },
+    "actionItems":  [
+                        "Review and fix failed components",
+                        "Implement automated QA checks in CI/CD pipeline",
+                        "Establish regular QA testing schedule",
+                        "Create component improvement roadmap",
+                        "Document QA standards and best practices"
+                    ],
+    "summary":  {
+                    "complianceScore":  0,
+                    "testsPassed":  32,
+                    "executionTime":  0,
+                    "testsExecuted":  64,
+                    "testsFailed":  32,
+                    "totalComponents":  16
+                },
+    "complianceBreakdown":  {
+                                "poor":  16,
+                                "acceptable":  0,
+                                "excellent":  0,
+                                "good":  0
+                            },
+    "recommendations":  [
+                            "Overall compliance is below 90%. Consider comprehensive review of all components.",
+                            "16 components failed testing. Priority should be given to fixing these components.",
+                            "16 components have poor compliance. These require immediate attention."
+                        ]
+}

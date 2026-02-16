@@ -1,0 +1,30 @@
+{
+  "id": "1770826896--5116000767502506834",
+  "timestamp": 1770826896.3357317,
+  "request": {
+    "stream": true,
+    "model": "moonshotai/kimi-k2.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "> **\u26a1 Google Antigravity:** Cached Response (0ms)\n> **\ud83d\ude80 Mode:** Zero-Latency Cache Hit\n---\n\nHello! How can I help you today?"
+      },
+      {
+        "role": "user",
+        "content": "bye"
+      }
+    ]
+  },
+  "response": "Goodbye! Feel free to come back anytime.",
+  "model": "moonshotai/kimi-k2.5",
+  "inference_mode": "cached",
+  "agent_name": "cache",
+  "latency": 5.698204040527344e-05,
+  "guards": [],
+  "feedback": null,
+  "backend": "nvidia-kimi-k2.5"
+}

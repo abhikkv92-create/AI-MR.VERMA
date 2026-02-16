@@ -1,0 +1,76 @@
+﻿{
+    "executionTime":  0.0030128999999999998,
+    "passed":  false,
+    "componentName":  "post-tool",
+    "overallScore":  43.8,
+    "componentType":  "hooks",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+    "complianceLevel":  "Poor",
+    "tests":  [
+                  {
+                      "component":  "post-tool",
+                      "recommendations":  [
+
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[PASS] Semantic clarity: well-structured naming"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  100
+                  },
+                  {
+                      "missingFiles":  [
+                                           "hook.json",
+                                           "implementation.js"
+                                       ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[FAIL] Missing required file: hook.json",
+                                      "[FAIL] Missing required file: implementation.js",
+                                      "Subdirectories found: 1"
+                                  ],
+                      "type":  "hooks",
+                      "test":  "File Structure",
+                      "score":  5
+                  },
+                  {
+                      "compatibility":  [
+
+                                        ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                      "dependencies":  [
+
+                                       ],
+                      "type":  "hooks",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No implementation files found",
+                                        "No documentation files found"
+                                    ],
+                      "score":  0
+                  },
+                  {
+                      "loadTime":  0,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                      "type":  "hooks",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  null
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 12:24:21"
+}

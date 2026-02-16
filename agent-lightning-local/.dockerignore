@@ -1,0 +1,10 @@
+# Build context exclusions
+data/
+logs/
+checkpoints/
+__pycache__/
+*.pyc
+.git/
+.env
+*.md
+nul

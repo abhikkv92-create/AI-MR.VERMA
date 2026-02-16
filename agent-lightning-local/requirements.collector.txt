@@ -1,4 +1,6 @@
 flask
 requests
 psutil
-duckduckgo-search
+gunicorn
+pymilvus==2.4.9
+marshmallow>=3.11.0,<4.0.0

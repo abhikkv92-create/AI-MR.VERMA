@@ -13,11 +13,11 @@ REWARD SIGNALS:
   6. Appropriate length (not over/under-engineered)    weight: 0.10
 """
 
+import ast
+import logging
 import os
 import re
-import json
-import subprocess
-import logging
+import time
 from typing import Optional
 
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
@@ -101,23 +101,12 @@ def _extract_code(response: str) -> Optional[str]:
 
 
 def _check_syntax(code: str) -> bool:
-    """Check if code has valid Python or JavaScript syntax."""
-    # Try Python
+    """Check if code has valid Python syntax using safe AST parsing."""
     try:
-        compile(code, "<string>", "exec")
+        ast.parse(code)
         return True
     except SyntaxError:
-        pass
-    # Try JavaScript via Node (if available)
-    try:
-        result = subprocess.run(
-            ["node", "-e", f"new Function({json.dumps(code)})"],
-            capture_output=True, timeout=5
-        )
-        return result.returncode == 0
-    except Exception:
-        pass
-    return False
+        return False
 
 
 def batch_compute_rewards(interactions: list) -> list:
@@ -134,6 +123,6 @@ def batch_compute_rewards(interactions: list) -> list:
         # if positive_traits:
         #     learned = "\n".join(f"▶ {trait}" for trait in positive_traits)
         #     improved_prompt = f"{base_prompt}\n\nLearned guidelines:\n{learned}"
-        interaction["reward_computed_at"] = __import__("time").time()
+        interaction["reward_computed_at"] = time.time()
         results.append(interaction)
     return results

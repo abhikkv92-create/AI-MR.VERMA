@@ -1,0 +1,78 @@
+﻿{
+    "executionTime":  0.0030767,
+    "passed":  false,
+    "componentName":  "development",
+    "overallScore":  38.8,
+    "componentType":  "agents",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\agents\\development",
+    "complianceLevel":  "Poor",
+    "tests":  [
+                  {
+                      "component":  "development",
+                      "recommendations":  [
+                                              "Use descriptive words separated by hyphens"
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\agents\\development",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[WARN] Semantic warning: consider improving readability"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  80
+                  },
+                  {
+                      "missingFiles":  [
+                                           "agent.json",
+                                           "template.md",
+                                           "tests.ps1"
+                                       ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\agents\\development",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[FAIL] Missing required file: agent.json",
+                                      "[FAIL] Missing required file: template.md",
+                                      "[FAIL] Missing required file: tests.ps1",
+                                      "Subdirectories found: 5"
+                                  ],
+                      "type":  "agents",
+                      "test":  "File Structure",
+                      "score":  5
+                  },
+                  {
+                      "compatibility":  [
+
+                                        ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\agents\\development",
+                      "dependencies":  [
+
+                                       ],
+                      "type":  "agents",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No implementation files found",
+                                        "No documentation files found"
+                                    ],
+                      "score":  0
+                  },
+                  {
+                      "loadTime":  0,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\agents\\development",
+                      "type":  "agents",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  null
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 13:48:31"
+}

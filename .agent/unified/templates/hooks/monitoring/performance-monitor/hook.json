@@ -1,0 +1,20 @@
+﻿{
+  "name": "performance-monitor",
+  "version": "1.0.0",
+  "description": "Claude Code hook for performance-monitor",
+  "type": "hook",
+  "category": "performance",
+  "subcategory": "performance-monitor",
+  "enabled": true,
+  "config": {
+    "trigger_events": [],
+    "execution_order": 1,
+    "async": true
+  },
+  "conditions": {},
+  "actions": [],
+  "integration": {
+    "claude_code": true,
+    "mr_verma": true
+  }
+}

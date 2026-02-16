@@ -1,0 +1,35 @@
+# syntax=docker/dockerfile:1
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY agent-lightning-local/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire project (needed for imports)
+COPY . /app/
+
+# Create necessary directories
+RUN mkdir -p /app/data /app/logs /app/checkpoints /app/config
+
+# Set environment variables
+ENV PYTHONPATH=/app \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    TRAINING_INTERVAL_HOURS=6 \
+    MIN_SAMPLES_FOR_TRAINING=10
+
+# Health check
+HEALTHCHECK --interval=60s --timeout=30s --start-period=60s --retries=3 \
+    CMD python -c "import os; exit(0 if os.path.exists('/app/checkpoints/healthy') else 1)" || exit 1
+
+# Run the trainer
+CMD ["python", "agent-lightning-local/train_loop.py"]

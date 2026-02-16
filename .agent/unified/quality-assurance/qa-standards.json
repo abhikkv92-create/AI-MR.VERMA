@@ -1,0 +1,40 @@
+﻿{
+    "standards":  {
+                      "performance":  {
+                                          "memoryLimit":  104857600,
+                                          "maxExecutionTime":  30,
+                                          "timeout":  300
+                                      },
+                      "content":  {
+                                      "jsonValidation":  true,
+                                      "codeQuality":  true,
+                                      "security":  true,
+                                      "documentation":  true
+                                  },
+                      "fileStructure":  {
+                                            "maxFileSize":  1048576,
+                                            "encoding":  "UTF-8",
+                                            "requiredFiles":  {
+                                                                  "hooks":  "hook.json implementation.js",
+                                                                  "mcp":  "mcp.json implementation.js",
+                                                                  "commands":  "command.json implementation.js",
+                                                                  "settings":  "setting.json implementation.js",
+                                                                  "skills":  "skill.json implementation.py",
+                                                                  "agents":  "agent.json template.md tests.ps1"
+                                                              }
+                                        },
+                      "naming":  {
+                                     "pattern":  "^[a-z0-9-]+$",
+                                     "description":  "Component names must be lowercase with hyphens only",
+                                     "maxLength":  50,
+                                     "required":  true
+                                 }
+                  },
+    "version":  "1.0.0",
+    "complianceLevels":  {
+                             "poor":  50,
+                             "acceptable":  70,
+                             "excellent":  95,
+                             "good":  85
+                         }
+}

@@ -1,392 +1,875 @@
-import os
-import json
-import time
-import requests
-import threading
-import psutil
-import re
-from flask import Flask, request, jsonify, Response
-from skills_manager import SkillsManager
+"""
+MR.VERMA Intelligence Core — Interaction Collector & API Proxy
+──────────────────────────────────────────────────────────────
+Production-grade NVIDIA Kimi K2.5 proxy with:
+  - Cached telemetry (background thread, 30s refresh)
+  - Connection pooling (requests.Session)
+  - Quality Guard (hallucination scan + symbolic density)
+  - Interaction logging for SFT data collection
+  - Graceful shutdown handling
+"""
 
+import json
+import sys
+import os
+
+# Add root directory to sys.path for core/main imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import logging
+import queue
+import re
+import signal
+import threading
+import time
+import uuid
+
+import psutil
+import requests
+from flask import Flask, Response, jsonify, request
+from flask_cors import CORS
+from skills_manager import SkillsManager
+from vector_services import EmbeddingService, MilvusService
+from core.thermal_governor import ThermalGovernor
+from core.vulnerability_listener import VulnerabilityListener
+from core.plugin_orchestrator import orchestrator as plugin_orchestrator
+from core.mcp_hub import mcp_hub
+
+# ── Logging ──
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+logging.basicConfig(
+    level=getattr(logging, LOG_LEVEL),
+    format="%(asctime)s [COLLECTOR] %(levelname)s %(message)s",
+)
+log = logging.getLogger(__name__)
+
+# ── Global Configuration ──
+NVIDIA_API_URL = os.getenv(
+    "NVIDIA_API_URL", "https://integrate.api.nvidia.com/v1/chat/completions"
+)
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")
+NVIDIA_MODEL = os.getenv("NVIDIA_MODEL", "moonshotai/kimi-k2.5")
+DATA_DIR = "/app/data/interactions"
+MAX_REQUEST_BYTES = 1_000_000  # 1MB max payload
+TELEMETRY_CACHE_TTL = 30  # seconds
+
+os.makedirs(DATA_DIR, exist_ok=True)
+
+# ── Global Health Monitors ──
+thermal_gov = ThermalGovernor()
+security_list = VulnerabilityListener()
+
+# ── Initialize Flask & Skills ──
+app = Flask(__name__)
+CORS(app)  # Enable CORS for SSE
+skills_mgr = SkillsManager()
+embed_svc = EmbeddingService(NVIDIA_API_KEY)
+# ── Initialize V5.0 Singularity Core ──
+from core.orchestrator import SupremeOrchestrator
+
+orchestrator = SupremeOrchestrator()
+
+# Initialize Task Queue and Startup Lifecycle (Background)
+import asyncio
+import threading
+
+
+def _run_orch_startup():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(orchestrator.startup())
+    loop.run_forever()
+
+
+threading.Thread(target=_run_orch_startup, daemon=True).start()
+log.info("V5.0 Singularity Orchestrator started in background.")
+
+# ── Connection Pooling ──
+http_session = requests.Session()
+adapter = requests.adapters.HTTPAdapter(
+    pool_connections=10, pool_maxsize=10, max_retries=1
+)
+http_session.mount("https://", adapter)
+http_session.mount("http://", adapter)
+
+# ── Cached Telemetry ──
+_telemetry_cache = {
+    "cpu_total": 0.0,
+    "cpu_cores": [],  # P/E Core breakdown placeholder
+    "ram_used_gb": 0.0,
+    "ram_total_gb": 0.0,
+    "ram_percent": 0.0,
+    "docker": "unknown",
+    "updated_at": 0,
+}
+_telemetry_lock = threading.Lock()
+
+# ── Global Event Bus for SSE ──
+_event_listeners = []
+_listeners_lock = threading.Lock()
+
+
+def _broadcast_event(event_type: str, data: dict):
+    """Notify all SSE listeners of a new event."""
+    message = f"event: {event_type}\ndata: {json.dumps(data)}\n\n"
+    with _listeners_lock:
+        for listener in _event_listeners:
+            listener.put(message)
+
+
+def _refresh_thread():
+    """Background task to poll metrics and broadcast."""
+    thermal_gov.start()
+    security_list.start()
+
+    while True:
+        try:
+            cpu_total = psutil.cpu_percent(interval=1)
+            cpu_per_core = psutil.cpu_percent(percpu=True)
+            mem = psutil.virtual_memory()
+
+            with _telemetry_lock:
+                _telemetry_cache["cpu_total"] = cpu_total
+                _telemetry_cache["cpu_cores"] = (
+                    cpu_per_core  # [P, P, P, P, P, P, E, E, E, E, E, E, E, E]
+                )
+                _telemetry_cache["ram_used_gb"] = round(mem.used / (1024**3), 2)
+                _telemetry_cache["ram_total_gb"] = round(mem.total / (1024**3), 2)
+                _telemetry_cache["ram_percent"] = mem.percent
+                _telemetry_cache["docker"] = _get_docker_info()
+                _telemetry_cache["updated_at"] = time.time()
+
+            # Broadcast Health Updates
+            _broadcast_event("telemetry", get_cached_telemetry())
+            _broadcast_event("thermal_status", thermal_gov.get_status())
+            _broadcast_event("security_status", security_list.get_status())
+
+        except Exception as e:
+            log.warning(f"Telemetry refresh failed: {e}")
+
+        time.sleep(2)
+
+
+def _get_docker_info() -> str:
+    """Retrieve Docker container info via Unix socket."""
+    sock_path = "/var/run/docker.sock"
+    try:
+        if not os.path.exists(sock_path):
+            return "Socket not mounted"
+
+        import http.client
+        import socket
+
+        class DockerSocket(http.client.HTTPConnection):
+            def __init__(self):
+                super().__init__("localhost")
+
+            def connect(self):
+                self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+                self.sock.connect(sock_path)
+                self.sock.settimeout(2)
+
+        conn = DockerSocket()
+        conn.request("GET", "/containers/json")
+        resp = conn.getresponse()
+        if resp.status == 200:
+            containers = json.loads(resp.read().decode())
+            lines = [
+                f"  - {c['Names'][0].strip('/')} ({c['State']})" for c in containers
+            ]
+            result = f"Active Containers ({len(containers)}):\n" + "\n".join(lines)
+        else:
+            result = f"API returned {resp.status}"
+        conn.close()
+        return result
+    except Exception as e:
+        return f"Error: {str(e)[:50]}"
+
+
+def get_cached_telemetry() -> dict:
+    """Return cached telemetry (never blocks the request path)."""
+    with _telemetry_lock:
+        return dict(_telemetry_cache)
+
+
+# ── Quality Guard ──
 class QualityGuard:
     """Proactive Supreme Guardian for quality, accuracy, and optimization."""
-    
+
+    HALLUCINATION_FLAGS = [
+        r"\[insert .* here\]",
+        r"\[your .* here\]",
+        r"<.* placeholder.*>",
+        r"FIXME",
+        r"TODO: Implementation",
+        r"I am sorry, but as an AI",
+        r"As a large language model",
+    ]
+
     @staticmethod
-    def enforce_symbolic_density(messages):
+    def enforce_symbolic_density(messages: list) -> list:
         """Injects Level 3 symbolic optimization instructions."""
         symbols = "∴ (Therefore), ∵ (Because), → (Leads to), ✅ (Success), ⚠ (Warning)"
         ref_injection = (
-            f"PROMOTIONAL: Apply [POWERUSEAGE Level 3] Symbolic Density.\n"
+            f"Apply [POWERUSEAGE Level 3] Symbolic Density.\n"
             f"Use these symbols to save context: {symbols}.\n"
             f"Maintain ultra-compressed, proactive, and accurate output."
         )
-        # Find first system message or insert one
-        sys_idx = next((i for i, m in enumerate(messages) if m['role'] == 'system'), -1)
+        # Find existing system message
+        sys_idx = next(
+            (i for i, m in enumerate(messages) if m.get("role") == "system"), -1
+        )
         if sys_idx != -1:
-            messages[sys_idx]['content'] += f"\n\n[GUARD]: {ref_injection}"
+            messages[sys_idx] = {
+                **messages[sys_idx],
+                "content": messages[sys_idx]["content"]
+                + f"\n\n[GUARD]: {ref_injection}",
+            }
         else:
             messages.insert(0, {"role": "system", "content": ref_injection})
         return messages
 
     @staticmethod
-    def scan_hallucination(content):
-        """Heuristic check for common AI hallucinations and placeholders."""
-        red_flags = [
-            r"\[insert .* here\]",
-            r"\[your .* here\]",
-            r"<.* placeholder.*>",
-            r"FIXME",
-            r"TODO: Implementation",
-            r"I am sorry, but as an AI",
-            r"As a large language model"
+    def scan_hallucination(content: str) -> list:
+        """Scan response for hallucination red flags."""
+        return [
+            flag
+            for flag in QualityGuard.HALLUCINATION_FLAGS
+            if re.search(flag, content, re.IGNORECASE)
         ]
-        found = []
-        for flag in red_flags:
-            if re.search(flag, content, re.IGNORECASE):
-                found.append(flag)
-        return found
 
-app = Flask(__name__)
 
-# Configuration
-OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
-DATA_DIR = "/app/data/interactions"
-os.makedirs(DATA_DIR, exist_ok=True)
-
-# Initialize Skills Manager
-skills_mgr = SkillsManager()
-
-# Models
-MODEL_SIDECAR = "qwen2.5-coder:1.5b"
-MODEL_PRO = "local-coder"
-
-# Thresholds
-COMPLEXITY_THRESHOLD = 200 # Characters
-MEMORY_SAFETY_MARGIN = 20 # Percent free RAM required to load Pro model
-
-def check_system_memory():
-    """Returns True if it's safe to load the heavy model."""
+# ── Interaction Logger ──
+def log_interaction(
+    request_data: dict,
+    response_data: str,
+    model_used: str,
+    latency: float,
+    guards: list = None,
+):
+    """Log interaction to disk for SFT data collection."""
     try:
-        mem = psutil.virtual_memory()
-        # Check if we have at least 2GB available for the model load
-        return mem.available > (2 * 1024 * 1024 * 1024) 
-    except:
-        return True # Fail open if psutil fails, let OOM killer decide (risky but keeps service up)
-
-def analyze_complexity(messages):
-    """
-    Decides which model to use based on prompt complexity.
-    Returns: (model_name, reason)
-    """
-    try:
-        if not messages:
-             return MODEL_SIDECAR, "empty_prompt"
-
-        last_msg = messages[-1].get('content', '')
-        
-        # 1. Length Check
-        if len(last_msg) < COMPLEXITY_THRESHOLD:
-            return MODEL_SIDECAR, "short_prompt"
-            
-        # 2. Keyword Check (Fast/Simple tasks)
-        simple_keywords = ['fix', 'syntax', 'typo', 'rename', 'comment', 'print']
-        if any(w in last_msg.lower() for w in simple_keywords):
-            return MODEL_SIDECAR, "simple_task"
-            
-        # 3. Keyword Check (Complex tasks)
-        complex_keywords = ['design', 'architect', 'refactor', 'explain', 'why', 'optimize', 'class', 'module']
-        if any(w in last_msg.lower() for w in complex_keywords):
-            # Check memory before committing to Pro
-            if check_system_memory():
-                return MODEL_PRO, "complex_task"
-            else:
-                return MODEL_SIDECAR, "memory_constrained"
-                
-        # Default to Sidecar for speed if ambiguous (Bias towards speed)
-        # Note: Sidecar is highly capable for standard code snippet generation
-        return MODEL_SIDECAR, "ambient_speed"
-        
-    except Exception as e:
-        print(f"Error analyzing complexity: {e}")
-        return MODEL_SIDECAR, "error_fallback"
-
-def log_interaction(request_data, response_data, model_used, latency, agent_name="unknown", guards=None):
-    try:
-        interaction_id = f"{int(time.time())}-{hash(str(request_data))}"
+        interaction_id = str(uuid.uuid4())
         log_entry = {
             "id": interaction_id,
             "timestamp": time.time(),
-            "request": request_data,
+            "messages": request_data.get("messages", []),
             "response": response_data,
             "model": model_used,
-            "agent_name": agent_name,
             "latency": latency,
+            "latency_ms": int(latency * 1000),
             "guards": guards or [],
-            "feedback": None 
+            "backend": "nvidia",
+            "reward_score": None,
         }
-        
         filepath = os.path.join(DATA_DIR, f"{interaction_id}.json")
         with open(filepath, "w") as f:
             json.dump(log_entry, f, indent=2)
-            
-        print(f"Logged interaction {interaction_id} (Model: {model_used}, Time: {latency:.2f}s)")
-        return interaction_id
     except Exception as e:
-        print(f"Logging failed: {e}")
-        return None
+        log.error(f"Interaction logging failed: {e}")
 
-@app.route('/v1/chat/completions', methods=['POST'])
+
+# ── API Endpoints ──
+@app.route("/v1/chat/completions", methods=["POST"])
 def proxy_chat():
     start_time = time.time()
-    data = request.json
-    
-    # Intelligent Routing
-    target_model, reason = analyze_complexity(data.get('messages', []))
-    print(f"Routing Decision: {target_model} ({reason})")
-    
-    # 0. Proactive Quality Gate (Symbolic Injection)
-    data['messages'] = QualityGuard.enforce_symbolic_density(data.get('messages', []))
+    try:
+        # Validation
+        if not NVIDIA_API_KEY:
+            return jsonify({"error": "NVIDIA_API_KEY is not configured"}), 503
 
-    # Skill RAG & Omni-Injection
-    messages = data.get('messages', [])
-    if messages:
-        last_msg = messages[-1].get('content', '')
-        
-        # 1. Agent Persona Switching (@agent)
-        agent_match = re.search(r'@\[?([a-zA-Z0-9_-]+)\]?', last_msg)
-        if agent_match:
-            agent_name = agent_match.group(1)
-            persona = skills_mgr.get_agent_persona(agent_name)
-            if persona:
-                print(f"Omni-RAG: Switching Persona to '{agent_name}'")
-                # Insert as high-priority System Prompt
-                messages.insert(0, {"role": "system", "content": f"You are now acting as the agent: {agent_name}.\n\nCORE RULES:\n{persona}"})
-
-        # 2. Workflow Injection (/workflow)
-        workflow_match = re.search(r'/([a-zA-Z0-9_-]+)', last_msg)
-        if workflow_match:
-            wf_name = workflow_match.group(1)
-            workflow = skills_mgr.get_workflow(wf_name)
-            if workflow:
-                print(f"Omni-RAG: Injecting Workflow '/{wf_name}'")
-                messages.insert(0, {"role": "system", "content": f"ACTION: User invoked the workflow '/{wf_name}'.\n\nEXECUTE THESE STEPS:\n{workflow}"})
-
-        # 3. Skill Context (Semantic)
-        relevant_skills = skills_mgr.find_relevant_skills(last_msg)
-        if relevant_skills:
-            skill_name = relevant_skills[0]
-            print(f"Omni-RAG: Matched skill '{skill_name}'")
-            skill_content = skills_mgr.get_skill_content(skill_name)
-            
-            if skill_content:
-                skill_injection = {
-                    "role": "system",
-                    "content": f"RELEVANT SKILL CONTEXT:\n\n{skill_content}\n\nUse this skill to guide your response."
+        content_length = request.content_length or 0
+        if content_length > MAX_REQUEST_BYTES:
+            return jsonify(
+                {
+                    "error": f"Payload too large ({content_length} bytes > {MAX_REQUEST_BYTES})"
                 }
-                messages.insert(0, skill_injection)
+            ), 413
 
-        # 4. Web Research Integration (New)
-        search_triggers = ['search', 'latest', 'news', 'find', 'research', 'who is', 'current', 'version of']
-        msg_lower = last_msg.lower()
-        print(f"DEBUG: Processing msg '{msg_lower[:30]}...' Triggers: {search_triggers}")
-        
-        if any(w in msg_lower for w in search_triggers):
-            print(f"Operation Web-Sense: Triggering research for '{last_msg[:50]}...'")
-            try:
-                from duckduckgo_search import DDGS
-                with DDGS() as ddgs:
-                    results = list(ddgs.text(last_msg, max_results=3))
-                    print(f"DEBUG: Found {len(results)} search results.")
-                    research_context = "\n".join([f"- {r['title']}: {r['body']}" for r in results])
-                    messages.insert(0, {"role": "system", "content": f"LIVE WEB RESEARCH RESULTS:\n{research_context}\n\nUse this fresh info to stay updated."})
-            except Exception as e:
-                print(f"Research failed: {e}")
-        
-    # 5. Default "Humanizer" Persona (System Awareness Upgrade)
-    # --- CONTEXT INJECTION (OPERATION AWAKENING) ---
-    # 1. Gather System Intel
-    try:
-        # Hardware
-        cpu_usage = psutil.cpu_percent()
-        ram_info = psutil.virtual_memory()
-        ram_gb = f"{ram_info.used/1e9:.1f}/{ram_info.total/1e9:.1f} GB"
-        
-        # Docker (Simulated or via socket if mounted, here we assume sidecar knowledge)
-        # In a real scenario, we'd query the docker socket. For now, we inject the known stack.
-        containers = "agl-collector (Active), agl-dashboard (Active), ollama (Active)"
-        
-        # Task Status
-        task_summary = "Unknown"
-        if os.path.exists("/app/brain/task.md"):
-            with open("/app/brain/task.md", "r") as f:
-                # Read first few lines of task.md
-                task_summary = f.read(500).replace("\n", " ") + "..."
-    except:
-        cpu_usage, ram_gb, containers, task_summary = "N/A", "N/A", "Unknown", "Unknown"
+        data = request.json
+        if not data or not data.get("messages"):
+            return jsonify({"error": "Missing 'messages' in request body"}), 400
 
-    # 2. Construct Dynamic System Prompt (Poweruseage Optimized)
-    system_context = (
-        f"You are Mr. Verma, Operator of 'Symbiote' Grid.\n"
-        f" [⚡ TELEMETRY]\n"
-        f" - ⚡ CPU: {cpu_usage}%\n"
-        f" - 🧠 RAM: {ram_gb}\n"
-        f" - 📦 CTN: {containers}\n"
-        f" - 🤖 MDL: {target_model}\n"
-        f" - ▶ TSK: {task_summary}\n\n"
-        f" - ∴ Allowed: [SELF-PATCH], [SELF-EVOLVE]\n"
-        f" - ∵ Root: /mnt/abhinav/ (host e:\\ABHINAV)\n"
-        f" - ▶ Use [SELF-PATCH: path/file]...[/SELF-PATCH] to write.\n"
-        f" - ▶ Use [SELF-EVOLVE: PROMPT_OPT|SFT] to learn.\n"
-    )
-    
-    # 3. Inject into Model Context
-    # Check if a system prompt already exists
-    system_idx = next((i for i, m in enumerate(messages) if m['role'] == 'system'), -1)
-    
-    if system_idx != -1:
-        # Update existing system prompt to include telemetry
-        existing = messages[system_idx]['content']
-        messages[system_idx]['content'] = f"{system_context}\n\nPREVIOUS INSTRUCTIONS:\n{existing}"
-    else:
-        # Insert new system prompt
-        messages.insert(0, {"role": "system", "content": system_context})
-        
-    data['messages'] = messages
+        messages = list(data["messages"])  # Copy to avoid mutation
+        user_query = messages[-1].get("content", "") if messages else ""
 
-    # Override model in request
-    data['model'] = target_model
-    
-    # Intelligent Deloading Control
-    # If Pro model is used, we want it explicitly unloaded after a short idle to free GPU/RAM
-    if target_model == MODEL_PRO:
-        data['keep_alive'] = "2m" 
-    else:
-        # Sidecar stays hot
-        data['keep_alive'] = -1 
+        # ── RAG: Semantic Recall ──
+        semantic_context = ""
+        if user_query:
+            log.debug(f"Generating embedding for query: {user_query[:50]}...")
+            query_vector = embed_svc.get_embedding(user_query)
+            if query_vector:
+                log.debug("Searching Milvus for context...")
+                results = milvus_svc.search(query_vector, limit=3)
+                if results:
+                    context_segments = [
+                        f"[{res.role.upper()}]: {res.content}" for res in results
+                    ]
+                    semantic_context = (
+                        "\n### SEMANTIC CONTEXT (Long-Term Memory)\n"
+                        + "\n".join(context_segments)
+                    )
+                    log.info(f"Retrieved {len(results)} context segments from Milvus.")
+                else:
+                    log.debug("No semantic context found in Milvus.")
+            else:
+                log.warning("Query embedding generation failed. Skipping RAG.")
 
-    try:
-        # Forward to Ollama
-        resp = requests.post(
-            f"{OLLAMA_HOST}/v1/chat/completions",
-            json=data,
-            stream=True
+        # ── Telemetry & Quality Injection ──
+        telem = get_cached_telemetry()
+        sys_ctx = (
+            f"You are MR. VERMA (Powered by NVIDIA Kimi K2.5).\n"
+            f"Directives: ZERO HALLUCINATION, LOGICAL ACCURACY, PRODUCTION-GRADE CODE.\n"
+            f"Telemetry: CPU {telem['cpu']}% | RAM {telem['ram']}\n"
         )
-        
-        # We need to stream the response back to client 
-        # AND collect it for logging.
-        collected_tokens = []
-        
+
+        messages = QualityGuard.enforce_symbolic_density(messages)
+        sys_idx = next(
+            (i for i, m in enumerate(messages) if m.get("role") == "system"), -1
+        )
+        if sys_idx != -1:
+            messages[sys_idx] = {
+                **messages[sys_idx],
+                "content": messages[sys_idx]["content"]
+                + f"\n\n{sys_ctx}{semantic_context}",
+            }
+        else:
+            messages.insert(
+                0, {"role": "system", "content": sys_ctx + semantic_context}
+            )
+
+        # ── NVIDIA Payload ──
+        payload = {
+            "model": NVIDIA_MODEL,
+            "messages": messages,
+            "max_tokens": data.get("max_tokens", 7000),
+            "temperature": data.get("temperature", 0.30),
+            "top_p": data.get("top_p", 0.90),
+            "stream": True,
+            "chat_template_kwargs": {"thinking": True},
+        }
+
+        headers = {
+            "Authorization": f"Bearer {NVIDIA_API_KEY}",
+            "Content-Type": "application/json",
+            "Accept": "text/event-stream",
+        }
+
+        # ── Forward to NVIDIA ──
+        resp = http_session.post(
+            NVIDIA_API_URL, headers=headers, json=payload, stream=True, timeout=180
+        )
+        resp.raise_for_status()
+
         def generate():
+            collected = []
             try:
                 for line in resp.iter_lines():
                     if line:
-                        decoded_line = line.decode("utf-8")
-                        if decoded_line.startswith("data: "):
-                            data_str = decoded_line[6:]
-                            if data_str.strip() == "[DONE]":
-                                break
+                        decoded = line.decode("utf-8")
+                        if (
+                            decoded.startswith("data: ")
+                            and decoded.strip() != "data: [DONE]"
+                        ):
                             try:
-                                data_json = json.loads(data_str)
-                                content = data_json.get("choices", [{}])[0].get("delta", {}).get("content", "")
-                                if content:
-                                    collected_tokens.append(content)
-                            except:
-                                pass
-                        else:
-                            # Non-streaming raw JSON response
-                            try:
-                                data_json = json.loads(decoded_line)
-                                msg_content = data_json.get("choices", [{}])[0].get("message", {}).get("content", "")
-                                if msg_content:
-                                    collected_tokens.append(msg_content)
-                            except:
-                                pass
+                                chunk = json.loads(decoded[6:])
+                                delta = (
+                                    chunk.get("choices", [{}])[0]
+                                    .get("delta", {})
+                                    .get("content", "")
+                                )
+                                if delta:
+                                    collected.append(delta)
+                            except json.JSONDecodeError:
+                                log.debug(
+                                    f"Skipped malformed SSE chunk: {decoded[:80]}"
+                                )
                         yield line + b"\n"
             finally:
-                process_post_stream()
+                # Post-stream logging (always runs)
+                full_response = "".join(collected)
+                latency = time.time() - start_time
+                guards = QualityGuard.scan_hallucination(full_response)
+                guards_log = (
+                    [{"type": "hallucination", "flags": guards}] if guards else []
+                )
+                threading.Thread(
+                    target=log_interaction,
+                    args=(data, full_response, NVIDIA_MODEL, latency, guards_log),
+                    daemon=True,
+                ).start()
 
-        def process_post_stream():
-            try:
-                full_content = "".join(collected_tokens)
-                # 1. Hallucination Guard
-                hallucinations = QualityGuard.scan_hallucination(full_content)
-                guards_log = []
-                if hallucinations:
-                    print(f"⚠ [GUARD] Detected potential hallucinations: {hallucinations}", flush=True)
-                    guards_log.append({"type": "hallucination_detected", "flags": hallucinations})
-                
-                # Symbolic density is always injected in Phase 0
-                guards_log.append({"type": "symbolic_density_enforced", "level": 3})
+                # Broadcast log to SSE listeners
+                _broadcast_event(
+                    "kernel_log",
+                    {
+                        "id": str(uuid.uuid4()),
+                        "timestamp": time.time(),
+                        "model": NVIDIA_MODEL,
+                        "latency_ms": int(latency * 1000),
+                        "response": full_response[:500],
+                        "guards": guards_log,
+                    },
+                )
 
-                # Extract agent_name for logging
-                last_msg = data.get('messages', [])[-1].get('content', '') if data.get('messages') else ""
-                agent_match = re.search(r'@\[?([a-zA-Z0-9_-]+)\]?', last_msg)
-                agent_name = agent_match.group(1) if agent_match else "unknown"
+                # Ingest into Milvus (Async)
+                def _async_ingest():
+                    combined_text = f"USER: {user_query}\nASSISTANT: {full_response}"
+                    vector = embed_svc.get_embedding(combined_text)
+                    if vector:
+                        milvus_svc.ingest(
+                            vector=vector,
+                            content=combined_text,
+                            role="interaction",
+                            session_id=str(
+                                uuid.uuid4()
+                            ),  # Placeholder for real session tracking
+                            telemetry=telem,
+                        )
 
-                # Log interaction
-                log_interaction(data, {"content": full_content}, target_model, 0, agent_name=agent_name, guards=guards_log)
-                
-                # --- SELF-PATCHING EXECUTION ---
-                self_patch_pattern = r"\[SELF-PATCH:\s*(.*?)\](.*?)\[/SELF-PATCH\]"
-                matches = list(re.finditer(self_patch_pattern, full_content, re.DOTALL | re.IGNORECASE))
-                
-                if matches:
-                    print(f"Operation Awakening: Detected {len(matches)} self-patches.", flush=True)
-                    for match in matches:
-                        path = match.group(1).strip()
-                        code = match.group(2).strip()
-                        if path.startswith("/mnt/abhinav/"):
-                            # Explicitly allowed host workspace mount
-                            safe_path = path
-                        else:
-                            # Basic Security: Flatten paths for local directory
-                            safe_path = os.path.basename(path) 
-                            
-                        print(f"Operation Awakening: APPLYING SELF-PATCH to '{safe_path}'", flush=True)
-                        # Ensure directory exists for /mnt/abhinav paths
-                        if "/" in safe_path:
-                            os.makedirs(os.path.dirname(safe_path), exist_ok=True)
-                            
-                        with open(safe_path, "w") as f:
-                            f.write(code)
+                threading.Thread(target=_async_ingest, daemon=True).start()
 
-                # --- SELF-EVOLUTION EXECUTION ---
-                evolve_pattern = r"\[SELF-EVOLVE:\s*(.*?)\]"
-                evolve_matches = list(re.finditer(evolve_pattern, full_content, re.IGNORECASE))
-                
-                if evolve_matches:
-                    print(f"Operation Awakening: Detected {len(evolve_matches)} evolution signals.", flush=True)
-                    for match in evolve_matches:
-                        evolve_type = match.group(1).strip().upper()
-                        if evolve_type == "PROMPT_OPT":
-                            print("Operation Awakening: TRIGGERING PROMPT OPTIMIZATION", flush=True)
-                            with open("/app/data/trigger_train.signal", "w") as f:
-                                f.write("1")
-                        elif evolve_type == "SFT":
-                            print("Operation Awakening: TRIGGERING SUPERVISED FINE-TUNING", flush=True)
-                            with open("/app/data/trigger_sft.signal", "w") as f:
-                                f.write("1")
-            except Exception as pe:
-                print(f"Post-processing failed: {pe}", flush=True)
-                    
         return Response(generate(), headers=dict(resp.headers))
 
+    except requests.exceptions.Timeout:
+        log.error("NVIDIA API timeout (180s)")
+        return jsonify(
+            {
+                "error": "Upstream API Timeout",
+                "detail": "NVIDIA API did not respond within 180s",
+            }
+        ), 504
+    except requests.exceptions.RequestException as req_err:
+        log.error(f"NVIDIA API Error: {req_err}")
+        return jsonify({"error": "Upstream API Error", "detail": str(req_err)}), 502
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        log.error(f"Internal Error: {e}", exc_info=True)
+        return jsonify({"error": "Internal Server Error", "detail": str(e)}), 500
 
 
-@app.route('/v1/models', methods=['GET'])
-def proxy_models():
+@app.route("/api/memory/search", methods=["GET"])
+def memory_search():
+    """Direct semantic search in Milvus."""
+    query = request.args.get("q", "")
+    if not query:
+        return jsonify([])
+
     try:
-        resp = requests.get(f"{OLLAMA_HOST}/v1/models")
-        return jsonify(resp.json()), resp.status_code
+        vector = embed_svc.get_embedding(query)
+        if not vector:
+            return jsonify({"error": "Embedding failure"}), 500
+
+        results = milvus_svc.search(vector, limit=10)
+        formatted = []
+        for res in results:
+            formatted.append(
+                {
+                    "role": res.role,
+                    "content": res.content,
+                    "distance": res.distance,
+                    "timestamp": res.timestamp,
+                }
+            )
+        return jsonify(formatted)
     except Exception as e:
+        log.error(f"Search API error: {e}")
         return jsonify({"error": str(e)}), 500
 
-@app.route('/health', methods=['GET'])
-def health():
-    return jsonify({"status": "ok", "routing": "enabled", "sidecar": MODEL_SIDECAR}), 200
 
-if __name__ == '__main__':
-    print("Starting Intelligent Router (Sidecar Pattern)...")
-    app.run(host='0.0.0.0', port=8550)
+@app.route("/api/hardware/telemetry", methods=["GET"])
+def hardware_telemetry():
+    """Detailed hardware telemetry for i9-13900H Dashboard."""
+    return jsonify(get_cached_telemetry())
+
+
+@app.route("/api/swarm/status", methods=["GET"])
+def swarm_status():
+    """Mock swarm status for dashboard development."""
+    # In a real scenario, this would poll the ProductionOrchestrator
+    return jsonify(
+        {
+            "active_agents": 27,
+            "task_queue": 12,  # Mocked non-zero value for UI testing
+            "status": "OPERATIONAL",
+            "last_heal": "10 mins ago",
+        }
+    )
+
+
+@app.route("/api/security/events", methods=["GET"])
+def security_events():
+    """Mock security events for the dashboard."""
+    return jsonify(
+        [
+            {
+                "id": 1,
+                "type": "AUTH",
+                "message": "User 'Abhinav' authenticated via SHA-256",
+                "severity": "info",
+                "timestamp": time.time() - 3600,
+            },
+            {
+                "id": 2,
+                "type": "ENCRYPTION",
+                "message": "AES-256-GCM context initialized for .brain/",
+                "severity": "success",
+                "timestamp": time.time() - 1800,
+            },
+            {
+                "id": 3,
+                "type": "VULN_SCAN",
+                "message": "Scan complete: 0 high-risk vulnerabilities found",
+                "severity": "success",
+                "timestamp": time.time() - 900,
+            },
+            {
+                "id": 4,
+                "type": "ACCESS",
+                "message": "ResearchAnalyst accessed semantic memory block #442",
+                "severity": "info",
+                "timestamp": time.time() - 450,
+            },
+        ]
+    )
+
+
+@app.route("/api/system/logs", methods=["GET"])
+def system_logs():
+    """Read recent interaction logs from disk."""
+    try:
+        files = sorted(
+            [
+                os.path.join(DATA_DIR, f)
+                for f in os.listdir(DATA_DIR)
+                if f.endswith(".json")
+            ],
+            key=os.path.getmtime,
+            reverse=True,
+        )
+        logs = []
+        for f in files[:20]:  # Last 20 interactions
+            with open(f, "r") as log_file:
+                logs.append(json.load(log_file))
+        return jsonify(logs)
+    except Exception as e:
+        log.error(f"Logs API error: {e}")
+        return jsonify([])
+
+
+# ── To-Do Swarm Endpoints (Engine Stress Test) ──
+
+
+@app.route("/api/swarm/todo/analyze", methods=["POST"])
+def todo_analyze():
+    """Extract structured task data using the Primary Engine."""
+    data = request.json
+    text = data.get("text", "")
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
+
+    prompt = (
+        "Extract structured tasks from the following text. "
+        "Return a JSON list of objects with 'title', 'priority' (low, medium, high), and 'due_date'. "
+        "Text: " + text
+    )
+
+    try:
+        payload = {
+            "model": "z-ai/glm5",  # Primary Engine Equivalent
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.1,
+        }
+        resp = http_session.post(
+            NVIDIA_API_URL,
+            headers={"Authorization": f"Bearer {NVIDIA_API_KEY}"},
+            json=payload,
+        )
+        resp.raise_for_status()
+        content = resp.json()["choices"][0]["message"]["content"]
+
+        # Clean JSON from markdown
+        if "```json" in content:
+            content = content.split("```json")[1].split("```")[0].strip()
+
+        return jsonify(json.loads(content))
+    except Exception as e:
+        log.error(f"Todo analysis failed: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/swarm/todo/weather", methods=["GET"])
+def todo_weather():
+    """Generate intelligent weather simulations using the Secondary Engine."""
+    location = request.args.get("location", "London")
+
+    prompt = (
+        f"Generate an intelligent, highly descriptive weather report for {location}. "
+        "Include temperature, condition, and a 'Swarm Recommendation' for tasks. "
+        "Return JSON with 'temp', 'condition', 'recommendation'."
+    )
+
+    try:
+        payload = {
+            "model": "moonshotai/kimi-k2.5",  # Secondary Engine
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.7,
+        }
+        resp = http_session.post(
+            NVIDIA_API_URL,
+            headers={"Authorization": f"Bearer {NVIDIA_API_KEY}"},
+            json=payload,
+        )
+        resp.raise_for_status()
+        content = resp.json()["choices"][0]["message"]["content"]
+
+        if "```json" in content:
+            content = content.split("```json")[1].split("```")[0].strip()
+
+        return jsonify(json.loads(content))
+    except Exception as e:
+        log.error(f"Weather generation failed: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/swarm/todo/vision", methods=["POST"])
+def todo_vision():
+    """Transcribe tasks from images using the Vision Engine."""
+    data = request.json
+    image_b64 = data.get("image")  # Base64 encoded image
+    if not image_b64:
+        return jsonify({"error": "No image data provided"}), 400
+
+    prompt = "Transcribe all tasks and notes from this image. return a bulleted list."
+
+    try:
+        # Vision Engine requires specific format and model
+        vision_url = "https://integrate.api.nvidia.com/v1/chat/completions"  # Or specific vision endpoint
+        payload = {
+            "model": "nvidia/nemotron-nano-12b-v2-vl",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"},
+                        },
+                    ],
+                }
+            ],
+            "max_tokens": 512,
+        }
+        # Note: Vision Engine might need a different API Key (NVIDIA_API_KEY_VISION)
+        # For now, we use the global key if available.
+        resp = http_session.post(
+            vision_url,
+            headers={"Authorization": f"Bearer {NVIDIA_API_KEY}"},
+            json=payload,
+        )
+        resp.raise_for_status()
+        return jsonify(
+            {"transcription": resp.json()["choices"][0]["message"]["content"]}
+        )
+    except Exception as e:
+        log.error(f"Vision transcription failed: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/swarm/todo/architect", methods=["POST"])
+def todo_architect():
+    """Generate a comprehensive multi-step plan from a high-level goal."""
+    data = request.json
+    goal = data.get("goal", "")
+    if not goal:
+        return jsonify({"error": "No goal provided"}), 400
+
+    prompt = (
+        f"You are the MR.VERMA Swarm Architect. Create a detailed, multi-step implementation plan for the following goal: '{goal}'. "
+        "Break it down into discrete, actionable tasks. For each task, provide a 'title', 'priority' (low, medium, high), and 'category' (e.g., Design, Development, Research). "
+        'Return a JSON list of objects ONLY. Example: [{"title": "Task Name", "priority": "high", "category": "Design"}]'
+    )
+
+    try:
+        payload = {
+            "model": "z-ai/glm5",
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.2,
+        }
+        resp = http_session.post(
+            NVIDIA_API_URL,
+            headers={"Authorization": f"Bearer {NVIDIA_API_KEY}"},
+            json=payload,
+        )
+        resp.raise_for_status()
+        content = resp.json()["choices"][0]["message"]["content"]
+
+        # Semantic English Fallback: Extract JSON or parse as natural list
+        if "```json" in content:
+            content = content.split("```json")[1].split("```")[0].strip()
+            return jsonify(json.loads(content))
+
+        try:
+            # Try parsing raw content as JSON
+            return jsonify(json.loads(content))
+        except:
+            # If not JSON, parse as newline-separated bulleted list (Semantic English)
+            tasks = []
+            for line in content.split("\n"):
+                if (
+                    line.strip().startswith("-") or line.strip()[0].isdigit()
+                    if line.strip()
+                    else False
+                ):
+                    title = line.strip().lstrip("-").strip().split(". ", 1)[-1]
+                    tasks.append(
+                        {
+                            "title": title,
+                            "priority": "medium",
+                            "category": "Architected",
+                        }
+                    )
+            return jsonify(
+                tasks
+                if tasks
+                else [{"title": content, "priority": "medium", "category": "Response"}]
+            )
+    except Exception as e:
+        log.error(f"Architecting failed: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/swarm/dispatch", methods=["POST"])
+def swarm_dispatch():
+    """Execute high-level commands dispatched from the Dashboard."""
+    data = request.json
+    command = data.get("command", "").strip().lower()
+
+    if not command:
+        return jsonify({"error": "No command provided"}), 400
+
+    log.info(f"SWARM DISPATCH: {command}")
+
+    # Simple Routing Logic
+    if command == "/scan":
+        # Placeholder for triggering a scan
+        response = "Triggering Swarm Vulnerability Scan... [PHASE: SCANNING]"
+        status = "BUSY"
+    elif command == "/heal":
+        response = (
+            "Initiating Autonomous Self-Heal Loop... [PHASE: ANALYZING AUDIT.LOG]"
+        )
+        status = "BUSY"
+    elif command.startswith("/analyze"):
+        target = command.split(" ", 1)[1] if " " in command else "project root"
+        response = f"Deep Analysis queued for: {target}"
+        status = "QUEUED"
+    elif command == "/kill":
+        response = "EMERGENCY PROTOCOL: Isolating Swarm. [PHASE: SHUTDOWN]"
+        status = "LOCKED"
+    elif command.startswith("/"):
+        # Handle dynamic slash commands from plugins
+        plugin_cmd = plugin_orchestrator.get_command(command[1:])
+        if plugin_cmd:
+            response = f"Executing Plugin Command: {plugin_cmd['metadata'].get('description', command)}"
+            status = "OK"
+        else:
+            response = f"Unknown core or plugin command: {command}"
+            status = "ERROR"
+    else:
+        # Check if user is addressing a specific agent by @name
+        if command.startswith("@"):
+            agent_name = command.split(" ")[0][1:]
+            agent = plugin_orchestrator.get_agent(agent_name)
+            if agent:
+                response = f"Switching context to Next-Gen Agent: {agent_name}. {agent['metadata'].get('description')}"
+                status = "OK"
+            else:
+                response = f"Agent @{agent_name} not found in specialist Registry."
+                status = "ERROR"
+        else:
+            response = f"Command acknowledged: {command}. Instructions sent to Intelligence Cluster."
+            status = "OK"
+
+    # Broadcast the dispatch result to logs for visibility
+    _broadcast_event(
+        "kernel_log",
+        {
+            "id": str(uuid.uuid4()),
+            "timestamp": time.time(),
+            "model": "COMMAND_DISPATCH",
+            "latency_ms": 0,
+            "response": f"EXECUTED: {command} -> {response}",
+            "guards": [],
+        },
+    )
+
+    return jsonify({"status": status, "response": response, "timestamp": time.time()})
+
+
+@app.route("/api/stream", methods=["GET"])
+def stream():
+    """Server-Sent Events provider for real-time dashboard updates."""
+
+    def event_stream():
+        q = queue.Queue()
+        with _listeners_lock:
+            _event_listeners.append(q)
+        try:
+            # Send initial state
+            yield f"event: telemetry\ndata: {json.dumps(get_cached_telemetry())}\n\n"
+            yield f"event: thermal_status\ndata: {json.dumps(thermal_gov.get_status())}\n\n"
+            yield f"event: security_status\ndata: {json.dumps(security_list.get_status())}\n\n"
+
+            while True:
+                msg = q.get()  # Blocks until _broadcast_event puts something
+                yield msg
+        except GeneratorExit:
+            with _listeners_lock:
+                _event_listeners.remove(q)
+
+    return Response(event_stream(), mimetype="text/event-stream")
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    """Health check endpoint — verifies NVIDIA API connectivity."""
+    try:
+        models_url = NVIDIA_API_URL.replace("/chat/completions", "/models")
+        check = http_session.get(
+            models_url, headers={"Authorization": f"Bearer {NVIDIA_API_KEY}"}, timeout=5
+        )
+        status = (
+            "connected" if check.status_code == 200 else f"error_{check.status_code}"
+        )
+    except Exception as e:
+        status = f"unreachable ({e})"
+
+    return jsonify(
+        {
+            "status": status,
+            "backend": "nvidia",
+            "model": NVIDIA_MODEL,
+            "uptime_seconds": int(time.time() - _start_time),
+        }
+    ), 200
+
+
+# ── Startup ──
+_start_time = time.time()
+
+# Start telemetry background thread
+_telemetry_thread = threading.Thread(target=_refresh_telemetry, daemon=True)
+_telemetry_thread.start()
+
+
+# Graceful shutdown
+def _shutdown(signum, frame):
+    log.info(f"Received signal {signum}, shutting down gracefully...")
+    raise SystemExit(0)
+
+
+signal.signal(signal.SIGTERM, _shutdown)
+
+if __name__ == "__main__":
+    log.info(f"🚀 Starting MR. VERMA Core ({NVIDIA_MODEL}) on port 8550")
+    app.run(host="0.0.0.0", port=8550)

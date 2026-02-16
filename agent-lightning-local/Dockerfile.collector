@@ -2,12 +2,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install minimal system tools if needed (psutil might need gcc/python-dev but usually wheel exists)
-# RUN apt-get update && apt-get install -y gcc python3-dev && rm -rf /var/lib/apt/lists/*
-
 COPY requirements.collector.txt .
 RUN pip install --no-cache-dir -r requirements.collector.txt
 
-COPY interaction_collector.py .
+COPY *.py .
 
-CMD ["python", "interaction_collector.py"]
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD python -c "import requests; exit(0 if requests.get('http://localhost:8550/health').status_code == 200 else 1)"
+
+EXPOSE 8550
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8550", "--timeout", "180", "interaction_collector:app"]

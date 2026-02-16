@@ -1,0 +1,25 @@
+﻿{
+    "capabilities":  [
+                         "analysis",
+                         "processing",
+                         "automation"
+                     ],
+    "version":  "1.0.0",
+    "category":  "ai-research",
+    "name":  "agent-memory-mcp",
+    "description":  "Skill template for agent-memory-mcp",
+    "language":  "python",
+    "requirements":  {
+                         "dependencies":  [
+                                              "requests",
+                                              "json",
+                                              "logging"
+                                          ],
+                         "pythonVersion":  "\u003e=3.8"
+                     },
+    "settings":  {
+                     "maxRetries":  3,
+                     "timeout":  300,
+                     "enabled":  true
+                 }
+}

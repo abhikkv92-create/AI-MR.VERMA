@@ -1,0 +1,74 @@
+﻿{
+    "executionTime":  0.006174,
+    "passed":  true,
+    "componentName":  "memory-spring-cleaning",
+    "overallScore":  86.2,
+    "componentType":  "commands",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\memory-spring-cleaning",
+    "complianceLevel":  "Good",
+    "tests":  [
+                  {
+                      "component":  "memory-spring-cleaning",
+                      "recommendations":  [
+
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\memory-spring-cleaning",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[PASS] Semantic clarity: well-structured naming"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  100
+                  },
+                  {
+                      "missingFiles":  [
+
+                                       ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\memory-spring-cleaning",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[PASS] Found required file: command.json",
+                                      "[PASS] Found required file: implementation.js",
+                                      "[PASS] Clean directory structure"
+                                  ],
+                      "type":  "commands",
+                      "test":  "File Structure",
+                      "score":  90
+                  },
+                  {
+                      "compatibility":  [
+                                            "[PASS] Configuration parsing successful",
+                                            "[PASS] Implementation files found",
+                                            "[PASS] Syntax validation passed for implementation.js"
+                                        ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\memory-spring-cleaning",
+                      "dependencies":  null,
+                      "type":  "commands",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No documentation files found"
+                                    ],
+                      "score":  85
+                  },
+                  {
+                      "loadTime":  0,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\memory-spring-cleaning",
+                      "type":  "commands",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  1188
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 13:11:25"
+}

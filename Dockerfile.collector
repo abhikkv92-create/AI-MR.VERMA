@@ -1,0 +1,44 @@
+# syntax=docker/dockerfile:1
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY agent-lightning-local/requirements.collector.txt ./requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire project (needed for core/ imports)
+COPY . /app/
+
+# Create necessary directories
+RUN mkdir -p /app/data/interactions /app/logs /app/checkpoints /app/config
+
+# Make entrypoint script executable
+RUN chmod +x /app/scripts/docker-entrypoint.sh || true
+
+# Set environment variables
+ENV PYTHONPATH=/app \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DATA_DIR=/app/data/interactions \
+    LOG_LEVEL=INFO
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8550/health || exit 1
+
+# Expose port
+EXPOSE 8550
+
+# Use entrypoint script
+ENTRYPOINT ["/app/scripts/docker-entrypoint.sh"]
+
+# Run the collector
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8550", "--timeout", "180", "--access-logfile", "-", "--error-logfile", "-", "agent_lightning_local.interaction_collector:app"]

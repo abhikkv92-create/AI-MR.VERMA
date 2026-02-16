@@ -1,0 +1,95 @@
+﻿{
+    "summary":  {
+                    "passed":  0,
+                    "passRate":  0,
+                    "failed":  9,
+                    "totalComponents":  9
+                },
+    "timestamp":  "2026-02-15 11:54:40",
+    "failedComponents":  [
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                                 "issues":  [
+                                                "Missing required file: command.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "automation",
+                                 "type":  "commands"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\deployment",
+                                 "issues":  [
+                                                "Missing required file: command.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "deployment",
+                                 "type":  "commands"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\performance",
+                                 "issues":  [
+                                                "Missing required file: command.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "performance",
+                                 "type":  "commands"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team",
+                                 "issues":  [
+                                                "Missing required file: command.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "team",
+                                 "type":  "commands"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline",
+                                 "issues":  [
+                                                "Missing required file: setting.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "statusline",
+                                 "type":  "settings"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\development-tools",
+                                 "issues":  [
+                                                "Missing required file: hook.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "development-tools",
+                                 "type":  "hooks"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\performance",
+                                 "issues":  [
+                                                "Missing required file: hook.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "performance",
+                                 "type":  "hooks"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                                 "issues":  [
+                                                "Missing required file: hook.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "post-tool",
+                                 "type":  "hooks"
+                             },
+                             {
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\testing",
+                                 "issues":  [
+                                                "Missing required file: hook.json",
+                                                "Missing required file: implementation.js"
+                                            ],
+                                 "name":  "testing",
+                                 "type":  "hooks"
+                             }
+                         ],
+    "passedComponents":  [
+
+                         ]
+}

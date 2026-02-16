@@ -1,16 +1,9 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
-flask
-requests
-psutil
 # ML Core (CPU/Intel Compatible)
 torch
 transformers
 peft
 datasets
 # Utilities
-litellm
 setuptools
 wheel
-streamlit
-pandas
-plotly

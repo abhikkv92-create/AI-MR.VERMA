@@ -1,0 +1,24 @@
+﻿{
+    "description":  "Agent template for javascript-pro",
+    "capabilities":  [
+                         "analysis",
+                         "development",
+                         "optimization"
+                     ],
+    "version":  "1.0.0",
+    "category":  "programming-languages",
+    "author":  "MR.VERMA System",
+    "created":  "2026-02-15",
+    "name":  "javascript-pro",
+    "settings":  {
+                     "priority":  "normal",
+                     "timeout":  300,
+                     "enabled":  true
+                 },
+    "requirements":  {
+                         "minimumVersion":  "1.0.0",
+                         "dependencies":  [
+
+                                          ]
+                     }
+}

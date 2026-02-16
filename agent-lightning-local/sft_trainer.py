@@ -10,10 +10,10 @@ PREREQUISITES:
   - Run this manually: docker exec -it agl-trainer python sft_trainer.py
 """
 
-import os
 import glob
 import json
 import logging
+import os
 
 log = logging.getLogger(__name__)
 SFT_DIR = "/app/data/sft_batches"
@@ -54,22 +54,22 @@ def prepare_dataset():
 def train():
     """Run LoRA fine-tuning with Transformers + PEFT (CPU Optimized)."""
     import torch
+    from datasets import load_dataset
+    from peft import LoraConfig, TaskType, get_peft_model
     from transformers import (
         AutoModelForCausalLM,
         AutoTokenizer,
-        TrainingArguments,
+        DataCollatorForLanguageModeling,
         Trainer,
-        DataCollatorForLanguageModeling
+        TrainingArguments,
     )
-    from peft import LoraConfig, get_peft_model, TaskType
-    from datasets import load_dataset
 
     dataset_path = prepare_dataset()
 
     # Load Dynamic Parameters
     config_path = "/app/config/sft_params.json"
     if os.path.exists(config_path):
-        with open(config_path, "r") as f:
+        with open(config_path) as f:
             sft_config = json.load(f)
         log.info(f"Loaded autonomous SFT config: {sft_config}")
     else:
@@ -83,12 +83,12 @@ def train():
             "target_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct"
         }
 
-    # Load Tokenizer (Always use the base size for consistency)
-    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-Coder-7B-Instruct")
+    TRAINING_MODEL_ID = sft_config.get("target_model", "Qwen/Qwen2.5-Coder-1.5B-Instruct")
+
+    # Load Tokenizer (MUST match the training model)
+    tokenizer = AutoTokenizer.from_pretrained(TRAINING_MODEL_ID)
     tokenizer.pad_token = tokenizer.eos_token
 
-    TRAINING_MODEL_ID = sft_config.get("target_model", "Qwen/Qwen2.5-Coder-1.5B-Instruct")
-    
     log.info(f"Loading {TRAINING_MODEL_ID} for CPU Fine-Tuning...")
     model = AutoModelForCausalLM.from_pretrained(
         TRAINING_MODEL_ID,
@@ -105,20 +105,20 @@ def train():
         lora_dropout=0.1,
         target_modules=["q_proj", "v_proj"]
     )
-    
+
     model = get_peft_model(model, peft_config)
     model.print_trainable_parameters()
 
     # Load Dataset
     dataset = load_dataset("json", data_files=dataset_path, split="train")
-    
+
     def tokenize_function(examples):
         return tokenizer(examples["text"], padding="max_length", truncation=True, max_length=512)
 
     tokenized_datasets = dataset.map(tokenize_function, batched=True)
 
     log.info(f"Training on {len(dataset)} examples...")
-    
+
     trainer = Trainer(
         model=model,
         train_dataset=tokenized_datasets,
@@ -139,9 +139,9 @@ def train():
 
     # Save Adapter
     adapter_dir = os.path.join(CHECKPOINT_DIR, "adapter_output")
-    model.save_pretrained(adapter_dir) 
+    model.save_pretrained(adapter_dir)
     log.info(f"Adapter saved to: {adapter_dir}")
-    
+
     log.info("=" * 60)
     log.info("SFT COMPLETE (CPU MODE)")
     log.info("=" * 60)

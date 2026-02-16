@@ -1,0 +1,20 @@
+﻿{
+  "name": "session-learning-capture",
+  "version": "1.0.0",
+  "description": "Claude Code command for session-learning-capture",
+  "type": "command",
+  "category": "team",
+  "subcategory": "session-learning-capture",
+  "enabled": true,
+  "config": {
+    "auto_execution": true,
+    "error_handling": "graceful",
+    "logging": true
+  },
+  "triggers": [],
+  "actions": [],
+  "integration": {
+    "claude_code": true,
+    "mr_verma": true
+  }
+}

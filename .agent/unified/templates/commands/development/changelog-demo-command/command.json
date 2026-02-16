@@ -1,0 +1,20 @@
+﻿{
+  "name": "changelog-demo-command",
+  "version": "1.0.0",
+  "description": "Claude Code command for changelog-demo-command",
+  "type": "command",
+  "category": "deployment",
+  "subcategory": "changelog-demo-command",
+  "enabled": true,
+  "config": {
+    "auto_execution": true,
+    "error_handling": "graceful",
+    "logging": true
+  },
+  "triggers": [],
+  "actions": [],
+  "integration": {
+    "claude_code": true,
+    "mr_verma": true
+  }
+}

@@ -1,0 +1,74 @@
+﻿{
+    "executionTime":  0.0061106999999999993,
+    "passed":  true,
+    "componentName":  "game-performance-monitor-statusline",
+    "overallScore":  86.2,
+    "componentType":  "settings",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\game-performance-monitor-statusline",
+    "complianceLevel":  "Good",
+    "tests":  [
+                  {
+                      "component":  "game-performance-monitor-statusline",
+                      "recommendations":  [
+
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\game-performance-monitor-statusline",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[PASS] Semantic clarity: well-structured naming"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  100
+                  },
+                  {
+                      "missingFiles":  [
+
+                                       ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\game-performance-monitor-statusline",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[PASS] Found required file: setting.json",
+                                      "[PASS] Found required file: implementation.js",
+                                      "[PASS] Clean directory structure"
+                                  ],
+                      "type":  "settings",
+                      "test":  "File Structure",
+                      "score":  90
+                  },
+                  {
+                      "compatibility":  [
+                                            "[PASS] Configuration parsing successful",
+                                            "[PASS] Implementation files found",
+                                            "[PASS] Syntax validation passed for implementation.js"
+                                        ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\game-performance-monitor-statusline",
+                      "dependencies":  null,
+                      "type":  "settings",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No documentation files found"
+                                    ],
+                      "score":  85
+                  },
+                  {
+                      "loadTime":  1.5619,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\game-performance-monitor-statusline",
+                      "type":  "settings",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  1220
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 13:19:51"
+}

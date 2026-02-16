@@ -1,0 +1,17 @@
+﻿{
+    "version":  "1.0.0",
+    "name":  "memory-integration",
+    "capabilities":  [
+                         "memory",
+                         "context",
+                         "persistence"
+                     ],
+    "description":  "MCP template for memory-integration",
+    "endpoints":  {
+                      "context":  "/context",
+                      "memory":  "/memory",
+                      "persist":  "/persist"
+                  },
+    "category":  "integration",
+    "protocol":  "memory-integration"
+}

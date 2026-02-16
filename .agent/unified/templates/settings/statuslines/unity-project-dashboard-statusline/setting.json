@@ -1,0 +1,20 @@
+﻿{
+  "name": "unity-project-dashboard-statusline",
+  "version": "1.0.0",
+  "description": "Claude Code setting for unity-project-dashboard-statusline",
+  "type": "setting",
+  "category": "statusline",
+  "subcategory": "unity-project-dashboard-statusline",
+  "enabled": true,
+  "config": {
+    "persistent": true,
+    "user_customizable": true,
+    "validation": true
+  },
+  "default_values": {},
+  "validation_rules": {},
+  "integration": {
+    "claude_code": true,
+    "mr_verma": true
+  }
+}

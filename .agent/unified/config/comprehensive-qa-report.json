@@ -1,0 +1,455 @@
+﻿{
+    "componentDetails":  [
+                             {
+                                 "passed":  true,
+                                 "name":  "automation",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "deployment",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\deployment",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "performance",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\performance",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "team",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team",
+                                 "type":  "commands",
+                                 "fileCount":  4,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "workflow-orchestrator",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation\\workflow-orchestrator",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "changelog-demo-command",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\deployment\\changelog-demo-command",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "optimize-memory-usage",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\performance\\optimize-memory-usage",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "memory-spring-cleaning",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team\\memory-spring-cleaning",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "session-learning-capture",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team\\session-learning-capture",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline",
+                                 "type":  "settings",
+                                 "fileCount":  4,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "command-statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\command-statusline",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "game-performance-monitor-statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\game-performance-monitor-statusline",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "unity-project-dashboard-statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\unity-project-dashboard-statusline",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "vercel-multi-env-status",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\vercel-multi-env-status",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "development-tools",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\development-tools",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "performance",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\performance",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "post-tool",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "testing",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\testing",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "command-logger",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\development-tools\\command-logger",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "performance-monitor",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\performance\\performance-monitor",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "format-python-files",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool\\format-python-files",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "test-runner",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\testing\\test-runner",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             }
+                         ],
+    "failedComponents":  [
+                             {
+                                 "passed":  false,
+                                 "name":  "statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline",
+                                 "type":  "settings",
+                                 "fileCount":  4,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "command-statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\command-statusline",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "game-performance-monitor-statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\game-performance-monitor-statusline",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "unity-project-dashboard-statusline",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\unity-project-dashboard-statusline",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "vercel-multi-env-status",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\settings\\statusline\\vercel-multi-env-status",
+                                 "type":  "settings",
+                                 "fileCount":  null,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "development-tools",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\development-tools",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "performance",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\performance",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "post-tool",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "testing",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\testing",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "command-logger",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\development-tools\\command-logger",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "performance-monitor",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\performance\\performance-monitor",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "format-python-files",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\post-tool\\format-python-files",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             },
+                             {
+                                 "passed":  false,
+                                 "name":  "test-runner",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\hooks\\testing\\test-runner",
+                                 "type":  "hooks",
+                                 "fileCount":  2,
+                                 "issues":  [
+                                                "Missing required file: implementation.js"
+                                            ]
+                             }
+                         ],
+    "summary":  {
+                    "passed":  9,
+                    "passRate":  40.9,
+                    "failed":  13,
+                    "totalComponents":  22
+                },
+    "timestamp":  "2026-02-15 11:56:55",
+    "passedComponents":  [
+                             {
+                                 "passed":  true,
+                                 "name":  "automation",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "deployment",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\deployment",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "performance",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\performance",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "team",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team",
+                                 "type":  "commands",
+                                 "fileCount":  4,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "workflow-orchestrator",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\automation\\workflow-orchestrator",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "changelog-demo-command",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\deployment\\changelog-demo-command",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "optimize-memory-usage",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\performance\\optimize-memory-usage",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "memory-spring-cleaning",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team\\memory-spring-cleaning",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             },
+                             {
+                                 "passed":  true,
+                                 "name":  "session-learning-capture",
+                                 "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\commands\\team\\session-learning-capture",
+                                 "type":  "commands",
+                                 "fileCount":  2,
+                                 "issues":  [
+
+                                            ]
+                             }
+                         ]
+}

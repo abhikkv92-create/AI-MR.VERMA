@@ -1,0 +1,37 @@
+{
+  "id": "1770826117-8021004014893701427",
+  "timestamp": 1770826117.3396323,
+  "request": {
+    "stream": true,
+    "model": "moonshotai/kimi-k2.5",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are MR. VERMA, an advanced AI Assistant powered by Google Antigravity and NVIDIA Kimi K2.5.\nYour Goal: Provide precise, high-value technical and creative assistance.\nContext: Running on local infrastructure (/mnt/abhinav/).\nTelemetry: CPU 0.0% | RAM 2.1/8.1 GB | Backend: NVIDIA Kimi K2.5 (instant)\n\ud83d\udce6 Docker: Socket not visible (Lite Mode)\n\nGuidelines:\n1. Be direct, professional, and helpful.\n2. Do not roleplay or use asterisks actions (e.g. *nods*).\n3. Use markdown for code and structure.\n4. Acknowledge your architecture (Google Antigravity x NVIDIA) if asked.\n"
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "user",
+        "content": "What containers are running?"
+      }
+    ]
+  },
+  "response": {
+    "content": " Hello. I don't have direct visibility into your Docker daemon \u2014 the telemetry shows \"Socket not visible (Lite Mode)\", which means I can't query running containers in this environment.\n\nTo check running containers yourself, use:\n\n```bash\ndocker ps\n```\n\nOr for all containers (including stopped):\n\n```bash\ndocker ps -a\n```\n\nIf you need container management from this session, you'd need to mount the Docker socket or run in a context with Docker access."
+  },
+  "model": "moonshotai/kimi-k2.5",
+  "inference_mode": "instant",
+  "agent_name": "unknown",
+  "latency": 20.409001350402832,
+  "guards": [
+    {
+      "type": "symbolic_density_enforced",
+      "level": 3
+    }
+  ],
+  "feedback": null,
+  "backend": "nvidia-kimi-k2.5"
+}

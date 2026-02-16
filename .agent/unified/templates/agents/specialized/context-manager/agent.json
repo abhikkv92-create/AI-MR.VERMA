@@ -1,0 +1,24 @@
+﻿{
+    "description":  "Agent template for context-manager",
+    "capabilities":  [
+                         "analysis",
+                         "development",
+                         "optimization"
+                     ],
+    "version":  "1.0.0",
+    "category":  "expert-advisors",
+    "author":  "MR.VERMA System",
+    "created":  "2026-02-15",
+    "name":  "context-manager",
+    "settings":  {
+                     "priority":  "normal",
+                     "timeout":  300,
+                     "enabled":  true
+                 },
+    "requirements":  {
+                         "minimumVersion":  "1.0.0",
+                         "dependencies":  [
+
+                                          ]
+                     }
+}

@@ -1,0 +1,24 @@
+﻿{
+    "description":  "Agent template for websocket-engineer",
+    "capabilities":  [
+                         "analysis",
+                         "development",
+                         "optimization"
+                     ],
+    "version":  "1.0.0",
+    "category":  "realtime",
+    "author":  "MR.VERMA System",
+    "created":  "2026-02-15",
+    "name":  "websocket-engineer",
+    "settings":  {
+                     "priority":  "normal",
+                     "timeout":  300,
+                     "enabled":  true
+                 },
+    "requirements":  {
+                         "minimumVersion":  "1.0.0",
+                         "dependencies":  [
+
+                                          ]
+                     }
+}

@@ -1,0 +1,20 @@
+﻿{
+  "name": "command-logger",
+  "version": "1.0.0",
+  "description": "Claude Code hook for command-logger",
+  "type": "hook",
+  "category": "development-tools",
+  "subcategory": "command-logger",
+  "enabled": true,
+  "config": {
+    "trigger_events": [],
+    "execution_order": 1,
+    "async": true
+  },
+  "conditions": {},
+  "actions": [],
+  "integration": {
+    "claude_code": true,
+    "mr_verma": true
+  }
+}

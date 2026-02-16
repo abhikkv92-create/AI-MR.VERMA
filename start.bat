@@ -1,122 +1,118 @@
 @echo off
-REM ============================================================================
-REM MR.VERMA Unified Startup Script
-REM Platform: OPENCODE, TRAE.AI, Local, Docker
-REM Version: 2.0.0
-REM ============================================================================
-
-title MR.VERMA SpiderWeb Initialization
-color 0A
+chcp 65001 >nul
+title MR.VERMA - AI Intelligence System
+cls
 
 echo.
-echo  ============================================================
-echo   🕸️  MR.VERMA SPIDER WEB ORCHESTRATOR v2.0.0  🕸️
-echo  ============================================================
+echo    ███╗   ███╗██████╗      ██╗   ██╗███████╗██████╗ ███╗   ███╗ █████╗
+echo    ████╗ ████║██╔══██╗     ██║   ██║██╔════╝██╔══██╗████╗ ████║██╔══██╗
+echo    ██╔████╔██║██████╔╝     ██║   ██║█████╗  ██████╔╝██╔████╔██║███████║
+echo    ██║╚██╔╝██║██╔══██╗     ╚██╗ ██╔╝██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║
+echo    ██║ ╚═╝ ██║██║  ██║      ╚████╔╝ ███████╗██║  ██║██║ ╚═╝ ██║██║  ██║
+echo    ╚═╝     ╚═╝╚═╝  ╚═╝       ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝
+echo.
+echo                     🤖 UNIFIED AI INTELLIGENCE PLATFORM
 echo.
 
-REM Check if Node.js is installed
-node --version >nul 2>&1
-if errorlevel 1 (
-    echo  ❌ Node.js is not installed or not in PATH
-    echo  Please install Node.js 16+ from https://nodejs.org/
+:: Set working directory
+cd /d "%~dp0"
+
+:: Check prerequisites
+echo    [1/5] 🔍 Checking system requirements...
+echo.
+
+:: Check Python
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo    ❌ Python not found.
+    echo    Please install Python 3.9+ from https://python.org
+    echo.
+    start https://python.org/downloads
     pause
     exit /b 1
 )
+echo    ✅ Python is installed
 
-echo  [✓] Node.js detected
+:: Check Docker (optional)
+docker --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo    ⚠️  Docker not found. Using local mode.
+    set DOCKER_AVAILABLE=0
+) else (
+    echo    ✅ Docker is installed
+    set DOCKER_AVAILABLE=1
+)
 
-REM Check if dependencies are installed
-if not exist "node_modules" (
-    echo  [i] Installing dependencies...
-    call npm install
-    if errorlevel 1 (
-        echo  ❌ Failed to install dependencies
-        pause
-        exit /b 1
+:: Check NVIDIA API Key
+if not exist .env (
+    echo.
+    echo    [2/5] 🔑 First-time setup detected...
+    echo.
+    echo    To use MR.VERMA, you need a free NVIDIA API key.
+    echo    Get one at: https://build.nvidia.com/explore/discover
+    echo.
+    set /p NVIDIA_KEY="    Paste your NVIDIA API key here: "
+    echo NVIDIA_API_KEY=%NVIDIA_KEY% > .env
+    echo NVIDIA_API_URL=https://integrate.api.nvidia.com/v1/chat/completions >> .env
+    echo NVIDIA_MODEL=moonshotai/kimi-k2.5 >> .env
+    echo LOG_LEVEL=INFO >> .env
+    echo    ✅ Configuration saved to .env
+) else (
+    echo    ✅ Configuration found
+)
+
+echo.
+echo    [3/5] 📦 Installing dependencies (one-time setup)...
+echo.
+
+:: Install Python dependencies
+if not exist venv (
+    python -m venv venv
+    echo    ✅ Virtual environment created
+)
+
+call venv\Scripts\activate.bat
+pip install -q -r requirements.unified.txt
+if %errorlevel% neq 0 (
+    echo    ❌ Failed to install dependencies
+    pause
+    exit /b 1
+)
+echo    ✅ Dependencies installed
+
+echo.
+echo    [4/5] 🚀 Starting MR.VERMA services...
+echo.
+
+:: Start Docker services if available
+if %DOCKER_AVAILABLE%==1 (
+    echo    Starting AI Brain (Docker)...    
+    docker-compose up -d --quiet-pull 2>nul
+    if %errorlevel% equ 0 (
+        echo    ✅ AI Brain is running
+        timeout /t 3 /nobreak >nul
+    ) else (
+        echo    ⚠️  Docker services not started (using local mode)
     )
 )
 
-echo  [✓] Dependencies ready
-
-REM Check for platform-specific flags
-if "%~1"=="opencode" (
-    echo  [i] Starting in OPENCODE mode...
-    set OPENCODE_ENV=true
-    goto start_node
-)
-
-if "%~1"=="traeai" (
-    echo  [i] Starting in TRAE.AI mode...
-    set TRAE_AI_ENV=true
-    goto start_node
-)
-
-if "%~1"=="local" (
-    echo  [i] Starting in LOCAL mode...
-    goto start_node
-)
-
-if "%~1"=="docker" (
-    echo  [i] Starting in DOCKER mode...
-    goto start_docker
-)
-
-REM Auto-detect platform
-if exist ".opencode" (
-    echo  [i] Auto-detected OPENCODE platform
-    set OPENCODE_ENV=true
-) else if exist ".trae" (
-    echo  [i] Auto-detected TRAE.AI platform
-    set TRAE_AI_ENV=true
-) else (
-    echo  [i] Auto-detected LOCAL platform
-)
-
-:start_node
-echo.
-echo  🚀 Initializing MR.VERMA SpiderWeb...
-echo  ────────────────────────────────────────────────────────────
-echo.
-
-node core/startup.js %*
-
-if errorlevel 1 (
-    echo.
-    echo  ❌ Startup failed!
-    pause
-    exit /b 1
-)
-
-pause
-exit /b 0
-
-:start_docker
-echo.
-echo  🐳 Starting Docker containers...
-echo  ────────────────────────────────────────────────────────────
-echo.
-
-cd /d "%~dp0"
-
-if not exist "docker-compose.yml" (
-    echo  ❌ docker-compose.yml not found!
-    pause
-    exit /b 1
-)
-
-docker-compose up -d
-
-if errorlevel 1 (
-    echo  ❌ Docker failed to start!
-    pause
-    exit /b 1
-)
+:: Create necessary directories
+if not exist data mkdir data
+if not exist logs mkdir logs
+if not exist output mkdir output
 
 echo.
-echo  ✅ Docker containers started!
-echo  Dashboard: http://localhost:8551
-echo  Assistant: http://localhost:8550
+echo    [5/5] 🎯 Launching MR.VERMA Interface...
 echo.
+echo    ════════════════════════════════════════════════════════════
+echo    🎉 MR.VERMA is ready! Press any key to start...
+echo    ════════════════════════════════════════════════════════════
+echo.
+pause >nul
 
-pause
+:: Launch the unified interface
+python unified\mrverma.py
+
+:: Cleanup on exit
+call venv\Scripts\deactivate.bat 2>nul
 exit /b 0

@@ -1,0 +1,76 @@
+﻿{
+    "executionTime":  0.0030978,
+    "passed":  false,
+    "componentName":  "canvas",
+    "overallScore":  40,
+    "componentType":  "skills",
+    "componentPath":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\skills\\canvas",
+    "complianceLevel":  "Poor",
+    "tests":  [
+                  {
+                      "component":  "canvas",
+                      "recommendations":  [
+                                              "Use descriptive words separated by hyphens"
+                                          ],
+                      "passed":  true,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\skills\\canvas",
+                      "details":  [
+                                      "[PASS] Pattern compliance: matches required format",
+                                      "[PASS] Length compliance: within maximum limit",
+                                      "[WARN] Semantic warning: consider improving readability"
+                                  ],
+                      "test":  "Naming Convention",
+                      "score":  80
+                  },
+                  {
+                      "missingFiles":  [
+                                           "skill.json",
+                                           "implementation.py"
+                                       ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\skills\\canvas",
+                      "extraFiles":  [
+
+                                     ],
+                      "details":  [
+                                      "[FAIL] Missing required file: skill.json",
+                                      "[FAIL] Missing required file: implementation.py",
+                                      "[PASS] Clean directory structure"
+                                  ],
+                      "type":  "skills",
+                      "test":  "File Structure",
+                      "score":  10
+                  },
+                  {
+                      "compatibility":  [
+
+                                        ],
+                      "passed":  false,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\skills\\canvas",
+                      "dependencies":  [
+
+                                       ],
+                      "type":  "skills",
+                      "test":  "Component Integration",
+                      "conflicts":  [
+                                        "No implementation files found",
+                                        "No documentation files found"
+                                    ],
+                      "score":  0
+                  },
+                  {
+                      "loadTime":  0,
+                      "path":  "E:\\ABHINAV\\MR.VERMA\\.agent\\unified\\templates\\skills\\canvas",
+                      "type":  "skills",
+                      "passed":  true,
+                      "complexity":  "Lightweight",
+                      "test":  "Performance Characteristics",
+                      "score":  70,
+                      "recommendations":  [
+                                              "Add performance configuration options"
+                                          ],
+                      "fileSize":  null
+                  }
+              ],
+    "testTimestamp":  "2026-02-15 13:48:31"
+}

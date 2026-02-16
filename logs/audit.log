@@ -1,0 +1,264 @@
+{"timestamp": "2026-02-16T06:03:01.930516", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:01.979855", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:01.995240", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:01.996945", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:01.998496", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:02.000341", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:02.001826", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:02.002909", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:03.213043", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:03.236925", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:03.250575", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:03.252157", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:03.253750", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:03.254896", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:03.257724", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:03.259300", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:04.459145", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:04.483065", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:04.494717", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:04.496817", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:04.498249", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:04.499464", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:04.500786", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:04.502077", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:05.647448", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:05.665186", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:05.680281", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:05.681679", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:05.683300", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:05.684567", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:05.685754", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:05.686567", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:06.765655", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:06.784837", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:06.797580", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:06.798816", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:06.799778", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:06.800737", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:06.801627", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:06.802699", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:07.879729", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:07.898367", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:07.910277", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:07.911640", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:07.912935", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:07.914065", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:07.915165", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:07.916148", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:09.072102", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:09.095722", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:09.104370", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:09.106019", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:09.108204", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:09.110814", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:09.112709", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:09.113795", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:10.194349", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:10.214580", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:10.226840", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:10.228414", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:10.230003", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:10.231274", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:10.232126", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:10.232949", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:11.302665", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:11.330625", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:11.340174", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:11.341802", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:11.343637", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:11.345205", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:11.346875", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:11.347958", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:12.452755", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:12.473726", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:12.485181", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:12.487025", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:12.488385", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:12.489641", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:12.490736", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:12.491389", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:13.579578", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:13.581677", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:13.583196", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:13.584620", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:13.585856", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:13.586985", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:13.588458", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:13.589613", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:14.633447", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:14.659949", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:14.670485", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:14.671900", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:14.673662", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:14.675229", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:14.676269", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:14.677568", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:15.732558", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:15.751544", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:15.766541", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:15.767424", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:15.768121", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:15.768760", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:15.769383", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:15.770061", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:16.820249", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:16.843132", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:16.857252", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:16.858449", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:16.859320", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:16.860362", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:16.861038", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:16.861639", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:17.876739", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:17.896973", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:17.907436", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:17.908304", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:17.909103", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:17.909892", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:17.910775", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:17.911745", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:19.098280", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:19.120267", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:19.133378", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:19.134167", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:19.135084", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:19.135978", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:19.136816", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:19.137488", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:20.282362", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:20.311057", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:20.322092", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:20.323413", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:20.324749", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:20.325549", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:20.327898", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:20.329822", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:21.467638", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:21.483411", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:21.495020", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:21.496294", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:21.497072", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:21.497811", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:21.498649", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:21.499531", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:22.578191", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:22.603866", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:22.612178", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:22.613334", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:22.614471", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:22.615500", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:22.616844", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:22.617896", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:23.638936", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:23.665090", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:23.675720", "agent": "BACKEND.DynamicNode.BackNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:23.677162", "agent": "BACKEND.DynamicNode.BackNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:23.678668", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:23.680052", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:23.681204", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "AUTH", "status": "SUCCESS", "details": "Agent authenticated self."}
+{"timestamp": "2026-02-16T06:03:23.682833", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "START", "status": "SUCCESS", "details": ""}
+{"timestamp": "2026-02-16T06:03:23.684034", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221781_FRONTEND"}
+{"timestamp": "2026-02-16T06:03:23.951096", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:23.952960", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221781_BACKEND"}
+{"timestamp": "2026-02-16T06:03:24.221235", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:24.225151", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221782_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:03:24.493292", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:24.494830", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221782_PLATFORM"}
+{"timestamp": "2026-02-16T06:03:24.763294", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:35.716661", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221783_FRONTEND"}
+{"timestamp": "2026-02-16T06:03:36.232333", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:36.234483", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221783_BACKEND"}
+{"timestamp": "2026-02-16T06:03:36.814873", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:36.832715", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221783_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:03:37.125102", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:37.126558", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221783_PLATFORM"}
+{"timestamp": "2026-02-16T06:03:37.784814", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:37.809833", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221784_FRONTEND"}
+{"timestamp": "2026-02-16T06:03:38.117370", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:38.119736", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221784_BACKEND"}
+{"timestamp": "2026-02-16T06:03:38.391076", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:38.393661", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221784_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:03:38.664338", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:38.666137", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221784_PLATFORM"}
+{"timestamp": "2026-02-16T06:03:38.932811", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:49.857624", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221785_FRONTEND"}
+{"timestamp": "2026-02-16T06:03:50.577642", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:50.595556", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221785_BACKEND"}
+{"timestamp": "2026-02-16T06:03:50.892066", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:50.893414", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221785_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:03:51.167021", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:51.169354", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221785_PLATFORM"}
+{"timestamp": "2026-02-16T06:03:51.445565", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:51.447453", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221786_FRONTEND"}
+{"timestamp": "2026-02-16T06:03:51.706654", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:51.708306", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221786_BACKEND"}
+{"timestamp": "2026-02-16T06:03:51.974929", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:51.977252", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221786_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:03:52.232097", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:03:52.233564", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221786_PLATFORM"}
+{"timestamp": "2026-02-16T06:03:52.496404", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:03.337872", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221787_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:03.830441", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:03.832501", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221787_BACKEND"}
+{"timestamp": "2026-02-16T06:04:04.101941", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:04.103335", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221787_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:04.372176", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:04.374060", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221787_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:04.637352", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:04.639502", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221789_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:04.907805", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:04.909320", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221789_BACKEND"}
+{"timestamp": "2026-02-16T06:04:05.167203", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:05.168929", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221789_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:05.432840", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:05.435122", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221789_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:05.700863", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:16.629377", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221790_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:17.073900", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:17.075458", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221790_BACKEND"}
+{"timestamp": "2026-02-16T06:04:17.364117", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:17.366055", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221790_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:17.625124", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:17.627788", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221790_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:17.890780", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:17.892699", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221791_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:18.154058", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:18.156077", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221791_BACKEND"}
+{"timestamp": "2026-02-16T06:04:18.416547", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:18.418782", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221791_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:18.687204", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:18.689610", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221791_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:18.952552", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:29.845073", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221792_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:30.378662", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:30.381287", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221792_BACKEND"}
+{"timestamp": "2026-02-16T06:04:30.657982", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:30.660194", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221792_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:30.936120", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:30.938852", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221792_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:31.213879", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:31.215557", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221793_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:31.482344", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:31.484780", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221793_BACKEND"}
+{"timestamp": "2026-02-16T06:04:31.756838", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:31.758418", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221793_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:32.032056", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:32.034724", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221793_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:32.312785", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:43.391548", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221794_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:43.991696", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:44.018013", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221794_BACKEND"}
+{"timestamp": "2026-02-16T06:04:44.282265", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:44.284643", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221794_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:44.543765", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:44.545604", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221794_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:44.792664", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:44.795387", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221795_FRONTEND"}
+{"timestamp": "2026-02-16T06:04:45.054123", "agent": "FRONTEND.DynamicNode.FrontNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:45.056945", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221795_BACKEND"}
+{"timestamp": "2026-02-16T06:04:45.308493", "agent": "BACKEND.DynamicNode.BackNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:45.311356", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221795_INTELLIGENCE"}
+{"timestamp": "2026-02-16T06:04:45.561659", "agent": "INTELLIGENCE.DynamicNode.IntelNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
+{"timestamp": "2026-02-16T06:04:45.563626", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_START", "status": "PENDING", "details": "node_1771221795_PLATFORM"}
+{"timestamp": "2026-02-16T06:04:45.821972", "agent": "PLATFORM.DynamicNode.PlatNode", "action": "TASK_FAIL", "status": "ERROR", "details": "Error code: 403 - {'status': 403, 'title': 'Forbidden', 'detail': 'Authorization failed'}"}
