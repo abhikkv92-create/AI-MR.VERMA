@@ -106,6 +106,8 @@ logs/*.log
 # Runtime data directories
 data/*
 !data/.gitkeep
+agent-lightning-local/data/*
+!agent-lightning-local/data/.gitkeep
 output/*
 !output/.gitkeep
 temp/

@@ -1,1 +1,0 @@
-{"id": "test-1770578997-1", "timestamp": 1770578997.4045815, "datetime": "2026-02-09T00:59:57Z", "request": {"messages": [{"role": "user", "content": "Test for @backend-specialist"}]}, "response": {"content": "Acknowledged from backend-specialist."}, "model": "local-coder", "agent_name": "backend-specialist", "latency": 0.5, "feedback": null}

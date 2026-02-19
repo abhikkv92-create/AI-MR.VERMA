@@ -1,0 +1,3 @@
+# This directory is for runtime data only
+# Do not commit files to this directory
+# It is gitignored to prevent large files from being tracked

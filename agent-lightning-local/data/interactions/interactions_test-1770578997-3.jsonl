@@ -1,1 +1,0 @@
-{"id": "test-1770578997-3", "timestamp": 1770578997.4091532, "datetime": "2026-02-09T00:59:57Z", "request": {"messages": [{"role": "user", "content": "Test for @orchestrator"}]}, "response": {"content": "Acknowledged from orchestrator."}, "model": "local-coder", "agent_name": "orchestrator", "latency": 0.5, "feedback": null}
