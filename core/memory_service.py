@@ -1,8 +1,8 @@
-
 import logging
 import os
 import time
 from datetime import datetime
+from typing import Any
 
 import requests
 from dotenv import load_dotenv
@@ -16,6 +16,7 @@ from pymilvus import (
 )
 
 logger = logging.getLogger("Kernel.Memory")
+
 
 class MemoryService:
     """
@@ -37,8 +38,12 @@ class MemoryService:
     def connect(self):
         """Connect to Milvus and initialize the collection."""
         try:
-            logger.info(f"Connecting to Milvus at {self.milvus_host}:{self.milvus_port}...")
-            connections.connect(alias="default", host=self.milvus_host, port=self.milvus_port)
+            logger.info(
+                f"Connecting to Milvus at {self.milvus_host}:{self.milvus_port}..."
+            )
+            connections.connect(
+                alias="default", host=self.milvus_host, port=self.milvus_port
+            )
             self.connected = True
             self._ensure_collection()
             logger.info("MemoryService successfully connected to Milvus.")
@@ -63,7 +68,7 @@ class MemoryService:
             FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=self.DIMENSION),
             FieldSchema(name="content", dtype=DataType.VARCHAR, max_length=65535),
             FieldSchema(name="metadata", dtype=DataType.JSON),
-            FieldSchema(name="timestamp", dtype=DataType.INT64)
+            FieldSchema(name="timestamp", dtype=DataType.INT64),
         ]
         schema = CollectionSchema(fields, description="MR.VERMA Semantic Memory")
         self.collection = Collection(name=self.COLLECTION_NAME, schema=schema)
@@ -72,7 +77,7 @@ class MemoryService:
         index_params = {
             "index_type": "HNSW",
             "metric_type": "L2",
-            "params": {"M": 16, "efConstruction": 128}
+            "params": {"M": 16, "efConstruction": 128},
         }
         self.collection.create_index(field_name="vector", index_params=index_params)
         self.collection.load()
@@ -87,19 +92,21 @@ class MemoryService:
         url = "https://integrate.api.nvidia.com/v1/embeddings"
         headers = {
             "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         payload = {
             "input": [text],
             "model": "nvidia/nv-embedqa-e5-v5",
             "input_type": "query" if "query" in text.lower() else "passage",
-            "encoding_format": "float"
+            "encoding_format": "float",
         }
 
         try:
             response = requests.post(url, headers=headers, json=payload, timeout=30)
             if response.status_code != 200:
-                logger.error(f"Embedding API error: {response.status_code} - {response.text}")
+                logger.error(
+                    f"Embedding API error: {response.status_code} - {response.text}"
+                )
                 return []
             vector = response.json()["data"][0]["embedding"]
             logger.debug(f"Received embedding with dimension: {len(vector)}")
@@ -117,17 +124,14 @@ class MemoryService:
         if not vector:
             return False
 
-        data = [
-            [vector],
-            [content],
-            [metadata],
-            [int(time.time())]
-        ]
+        data = [[vector], [content], [metadata], [int(time.time())]]
 
         try:
             # Check vector dimension vs expected
             if len(vector) != self.DIMENSION:
-                logger.error(f"Dimension mismatch! Expected {self.DIMENSION}, got {len(vector)}")
+                logger.error(
+                    f"Dimension mismatch! Expected {self.DIMENSION}, got {len(vector)}"
+                )
                 return False
 
             self.collection.insert(data)
@@ -137,13 +141,15 @@ class MemoryService:
             logger.error(f"Failed to store memory in Milvus: {e}")
             return False
 
-    async def store_visual_memory(self, description: str, image_path: str, query: str = "") -> bool:
-        """ Specialized storage for visual analysis results. """
+    async def store_visual_memory(
+        self, description: str, image_path: str, query: str = ""
+    ) -> bool:
+        """Specialized storage for visual analysis results."""
         metadata = {
             "type": "visual",
             "source": image_path,
             "query": query,
-            "timestamp_iso": datetime.now().isoformat()
+            "timestamp_iso": datetime.now().isoformat(),
         }
         content = f"Visual Analysis of {os.path.basename(image_path)}: {description}"
         return await self.store(content, metadata)
@@ -160,7 +166,12 @@ class MemoryService:
             return "No relevant past memories found."
 
         # Synthesize memories into a cognitive summary
-        memory_text = "\n".join([f"- [{m['metadata'].get('type', 'generic')}] {m['content']}" for m in raw_memories])
+        memory_text = "\n".join(
+            [
+                f"- [{m['metadata'].get('type', 'generic')}] {m['content']}"
+                for m in raw_memories
+            ]
+        )
 
         system_prompt = (
             "You are the MR.VERMA Neural Recall Module. "
@@ -172,9 +183,12 @@ class MemoryService:
             completion = engine.generate(
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"Query: {query}\n\nMemories:\n{memory_text}"}
+                    {
+                        "role": "user",
+                        "content": f"Query: {query}\n\nMemories:\n{memory_text}",
+                    },
                 ],
-                stream=False
+                stream=False,
             )
             recall_summary = completion.choices[0].message.content
             logger.info("Neural Recall Synthesis Complete.")
@@ -193,14 +207,13 @@ class MemoryService:
 
         try:
             results = self.collection.query(
-                expr=expr,
-                output_fields=["content", "metadata", "timestamp"],
-                limit=10
+                expr=expr, output_fields=["content", "metadata", "timestamp"], limit=10
             )
             return results
         except Exception as e:
             logger.error(f"Temporal retrieval failed: {e}")
             return []
+
 
 # Singleton instance
 memory_service = MemoryService()

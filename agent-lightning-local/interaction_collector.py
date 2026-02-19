@@ -48,7 +48,7 @@ NVIDIA_API_URL = os.getenv(
 )
 NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")
 NVIDIA_MODEL = os.getenv("NVIDIA_MODEL", "moonshotai/kimi-k2.5")
-DATA_DIR = "/app/data/interactions"
+DATA_DIR = os.getenv("MRVERMA_DATA_DIR", "./data/interactions")
 MAX_REQUEST_BYTES = 1_000_000  # 1MB max payload
 TELEMETRY_CACHE_TTL = 30  # seconds
 
@@ -63,6 +63,16 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for SSE
 skills_mgr = SkillsManager()
 embed_svc = EmbeddingService(NVIDIA_API_KEY)
+
+# ── Initialize Milvus (Optional - graceful fallback if unavailable) ──
+milvus_svc = None
+try:
+    milvus_svc = MilvusService()
+    milvus_svc.connect()
+    log.info("✅ Milvus vector memory initialized")
+except Exception as e:
+    log.warning(f"⚠️ Milvus not available, continuing without vector memory: {e}")
+
 # ── Initialize V5.0 Singularity Core ──
 from core.orchestrator import SupremeOrchestrator
 

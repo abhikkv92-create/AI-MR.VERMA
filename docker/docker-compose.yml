@@ -54,10 +54,13 @@ services:
     depends_on:
       milvus-standalone:
         condition: service_healthy
+        required: false
       etcd:
         condition: service_started
+        required: false
       minio:
         condition: service_healthy
+        required: false
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8550/health"]
       interval: 30s

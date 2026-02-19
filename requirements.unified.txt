@@ -53,9 +53,9 @@ faiss-cpu>=1.7.4              # Facebook AI Similarity Search (fallback)
 chromadb>=0.4.0               # Alternative vector store
 
 # ===========================================
-# Optional Vector DB (commented by default)
+# Vector Database
 # ===========================================
-# pymilvus>=2.3.0             # Milvus vector database (Primary)
+pymilvus>=2.4.0               # Milvus vector database (optional, graceful fallback if unavailable)
 
 # ===========================================
 # External Tool Requirements (NOT installed via pip)

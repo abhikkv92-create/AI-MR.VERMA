@@ -16,8 +16,8 @@ import logging
 import os
 
 log = logging.getLogger(__name__)
-SFT_DIR = "/app/data/sft_batches"
-CHECKPOINT_DIR = "/app/checkpoints"
+SFT_DIR = os.environ.get("MRVERMA_SFT_DIR", "./data/sft_batches")
+CHECKPOINT_DIR = os.environ.get("MRVERMA_CHECKPOINT_DIR", "./checkpoints")
 
 
 def prepare_dataset():
@@ -36,12 +36,14 @@ def prepare_dataset():
     # Format for training
     formatted = []
     for ex in all_examples:
-        formatted.append({
-            "text": (
-                f"### Instruction:\n{ex['instruction']}\n\n"
-                f"### Response:\n{ex['output']}"
-            )
-        })
+        formatted.append(
+            {
+                "text": (
+                    f"### Instruction:\n{ex['instruction']}\n\n"
+                    f"### Response:\n{ex['output']}"
+                )
+            }
+        )
 
     combined_path = os.path.join(SFT_DIR, "combined_sft.json")
     with open(combined_path, "w") as f:
@@ -80,10 +82,12 @@ def train():
             "max_steps": 10,
             "lora_r": 8,
             "lora_alpha": 32,
-            "target_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+            "target_model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
         }
 
-    TRAINING_MODEL_ID = sft_config.get("target_model", "Qwen/Qwen2.5-Coder-1.5B-Instruct")
+    TRAINING_MODEL_ID = sft_config.get(
+        "target_model", "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+    )
 
     # Load Tokenizer (MUST match the training model)
     tokenizer = AutoTokenizer.from_pretrained(TRAINING_MODEL_ID)
@@ -92,7 +96,7 @@ def train():
     log.info(f"Loading {TRAINING_MODEL_ID} for CPU Fine-Tuning...")
     model = AutoModelForCausalLM.from_pretrained(
         TRAINING_MODEL_ID,
-        torch_dtype=torch.float32, # CPU standard
+        torch_dtype=torch.float32,  # CPU standard
         device_map="cpu",
     )
 
@@ -103,7 +107,7 @@ def train():
         r=sft_config.get("lora_r", 8),
         lora_alpha=sft_config.get("lora_alpha", 32),
         lora_dropout=0.1,
-        target_modules=["q_proj", "v_proj"]
+        target_modules=["q_proj", "v_proj"],
     )
 
     model = get_peft_model(model, peft_config)
@@ -113,7 +117,9 @@ def train():
     dataset = load_dataset("json", data_files=dataset_path, split="train")
 
     def tokenize_function(examples):
-        return tokenizer(examples["text"], padding="max_length", truncation=True, max_length=512)
+        return tokenizer(
+            examples["text"], padding="max_length", truncation=True, max_length=512
+        )
 
     tokenized_datasets = dataset.map(tokenize_function, batched=True)
 
@@ -124,11 +130,15 @@ def train():
         train_dataset=tokenized_datasets,
         args=TrainingArguments(
             output_dir=os.path.join(CHECKPOINT_DIR, "sft_output"),
-            per_device_train_batch_size=sft_config.get("per_device_train_batch_size", 1),
-            gradient_accumulation_steps=sft_config.get("gradient_accumulation_steps", 4),
+            per_device_train_batch_size=sft_config.get(
+                "per_device_train_batch_size", 1
+            ),
+            gradient_accumulation_steps=sft_config.get(
+                "gradient_accumulation_steps", 4
+            ),
             max_steps=sft_config.get("max_steps", 10),
             learning_rate=sft_config.get("learning_rate", 2e-4),
-            use_cpu=True, # Explicitly use CPU
+            use_cpu=True,  # Explicitly use CPU
             logging_steps=1,
             save_steps=5,
         ),

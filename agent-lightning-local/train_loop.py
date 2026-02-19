@@ -23,15 +23,18 @@ POS_THRESHOLD = float(os.environ.get("REWARD_THRESHOLD_POSITIVE", "0.3"))
 NEG_THRESHOLD = float(os.environ.get("REWARD_THRESHOLD_NEGATIVE", "-0.3"))
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
-INTERACTION_DIR = "/app/data/interactions"
-SFT_DIR = "/app/data/sft_batches"
-REWARD_DIR = "/app/data/rewards"
-CHECKPOINT_DIR = "/app/checkpoints"
-LOG_DIR = "/app/logs"
-TRIGGER_SIGNAL = "/app/data/trigger_train.signal"
-SFT_SIGNAL = "/app/data/trigger_sft.signal"
+INTERACTION_DIR = os.environ.get("MRVERMA_INTERACTION_DIR", "./data/interactions")
+SFT_DIR = os.environ.get("MRVERMA_SFT_DIR", "./data/sft_batches")
+REWARD_DIR = os.environ.get("MRVERMA_REWARD_DIR", "./data/rewards")
+CHECKPOINT_DIR = os.environ.get("MRVERMA_CHECKPOINT_DIR", "./checkpoints")
+LOG_DIR = os.environ.get("MRVERMA_LOG_DIR", "./logs")
+TRIGGER_SIGNAL = os.environ.get("MRVERMA_TRIGGER_SIGNAL", "./data/trigger_train.signal")
+SFT_SIGNAL = os.environ.get("MRVERMA_SFT_SIGNAL", "./data/trigger_sft.signal")
 
-logging.basicConfig(level=getattr(logging, LOG_LEVEL), format="%(asctime)s [TRAINER] %(levelname)s %(message)s")
+logging.basicConfig(
+    level=getattr(logging, LOG_LEVEL),
+    format="%(asctime)s [TRAINER] %(levelname)s %(message)s",
+)
 log = logging.getLogger(__name__)
 
 training_step = 0
@@ -65,7 +68,9 @@ def load_recent_interactions(since_hours: int) -> list:
             log.warning(f"Skipped corrupt file {filepath}: {e}")
             continue
 
-    log.info(f"Loaded {len(all_interactions)} interactions from last {since_hours} hours")
+    log.info(
+        f"Loaded {len(all_interactions)} interactions from last {since_hours} hours"
+    )
     return all_interactions
 
 
@@ -79,7 +84,16 @@ def compute_all_rewards(interactions: list) -> list:
         os.makedirs(REWARD_DIR, exist_ok=True)
         with open(os.path.join(REWARD_DIR, f"rewards_{date_str}.jsonl"), "a") as f:
             for i in unscored:
-                f.write(json.dumps({"id": i.get("id"), "reward_score": i["reward_score"], "timestamp": i.get("timestamp")}) + "\n")
+                f.write(
+                    json.dumps(
+                        {
+                            "id": i.get("id"),
+                            "reward_score": i["reward_score"],
+                            "timestamp": i.get("timestamp"),
+                        }
+                    )
+                    + "\n"
+                )
     return [i for i in interactions if i.get("reward_score") is not None]
 
 
@@ -88,20 +102,32 @@ def collect_sft_data(high_reward_examples: list) -> str:
     global training_step
     sft_examples = []
     for ex in high_reward_examples:
-        user_msg = next((m.get("content", "") for m in ex.get("messages", []) if m.get("role") == "user"), "")
+        user_msg = next(
+            (
+                m.get("content", "")
+                for m in ex.get("messages", [])
+                if m.get("role") == "user"
+            ),
+            "",
+        )
         if user_msg and ex.get("response"):
-            sft_examples.append({
-                "instruction": user_msg,
-                "input": "",
-                "output": ex["response"],
-                "reward": ex.get("reward_score", 0)
-            })
+            sft_examples.append(
+                {
+                    "instruction": user_msg,
+                    "input": "",
+                    "output": ex["response"],
+                    "reward": ex.get("reward_score", 0),
+                }
+            )
 
     if not sft_examples:
         return ""
 
     os.makedirs(SFT_DIR, exist_ok=True)
-    filepath = os.path.join(SFT_DIR, f"sft_batch_{training_step}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M')}.json")
+    filepath = os.path.join(
+        SFT_DIR,
+        f"sft_batch_{training_step}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M')}.json",
+    )
     with open(filepath, "w") as f:
         json.dump(sft_examples, f, indent=2)
     log.info(f"SFT batch saved: {len(sft_examples)} examples → {filepath}")
@@ -111,7 +137,11 @@ def collect_sft_data(high_reward_examples: list) -> str:
 def run_training_cycle():
     """Execute one training cycle: load → score → collect SFT data."""
     global training_step
-    log.info("=" * 60 + f"\nTRAINING CYCLE START — {datetime.now(timezone.utc).isoformat()}Z\n" + "=" * 60)
+    log.info(
+        "=" * 60
+        + f"\nTRAINING CYCLE START — {datetime.now(timezone.utc).isoformat()}Z\n"
+        + "=" * 60
+    )
 
     interactions = load_recent_interactions(since_hours=TRAINING_INTERVAL * 2)
     if len(interactions) < MIN_SAMPLES:
@@ -122,20 +152,27 @@ def run_training_cycle():
     high_reward = [i for i in scored if i.get("reward_score", 0) > POS_THRESHOLD]
 
     # Strategy B: Collect SFT Data
-    top_n = sorted(scored, key=lambda x: x.get("reward_score", 0), reverse=True)[:max(10, len(scored) // 4)]
+    top_n = sorted(scored, key=lambda x: x.get("reward_score", 0), reverse=True)[
+        : max(10, len(scored) // 4)
+    ]
     sft_path = collect_sft_data(top_n)
 
     # Log run
     training_step += 1
     os.makedirs(LOG_DIR, exist_ok=True)
     with open(os.path.join(LOG_DIR, "training_history.jsonl"), "a") as f:
-        f.write(json.dumps({
-            "step": training_step,
-            "timestamp": time.time(),
-            "interactions_scored": len(scored),
-            "high_reward": len(high_reward),
-            "sft_batch_path": sft_path
-        }) + "\n")
+        f.write(
+            json.dumps(
+                {
+                    "step": training_step,
+                    "timestamp": time.time(),
+                    "interactions_scored": len(scored),
+                    "high_reward": len(high_reward),
+                    "sft_batch_path": sft_path,
+                }
+            )
+            + "\n"
+        )
 
     log.info(f"TRAINING CYCLE COMPLETE — step {training_step}")
 
@@ -163,6 +200,7 @@ def main():
                 try:
                     os.remove(SFT_SIGNAL)
                     import subprocess
+
                     subprocess.run(["python", "sft_trainer.py"], check=True)
                 except Exception as e:
                     log.error(f"SFT run failed: {e}")
